@@ -31,7 +31,7 @@ class Panel(
     var open: Boolean,
     val elements: List<Element>,
     val displayName: String = name
-) {: MinecraftInstance {
+) : MinecraftInstance {
 
     var x2 = 0
     var y2 = 0
