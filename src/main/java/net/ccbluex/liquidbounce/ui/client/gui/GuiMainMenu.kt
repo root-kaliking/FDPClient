@@ -331,7 +331,7 @@ class GuiMainMenu : AbstractScreen(), GuiYesNoCallback {
             title("§b新版本可用!")
             message(
                 """
-                §e$CLIENT_NAME 有一个新的$updateType可用！
+                §e$CLIENT_NAME 有一个新的${updateType}可用！
         
                 - §a版本:§r ${githubRelease.tagName}
                 - §a发布日期:§r $formattedDate
