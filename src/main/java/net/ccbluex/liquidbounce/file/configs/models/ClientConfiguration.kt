@@ -7,6 +7,7 @@ package net.ccbluex.liquidbounce.file.configs.models
 
 import net.ccbluex.liquidbounce.FDPClient
 import net.ccbluex.liquidbounce.config.Configurable
+import net.ccbluex.liquidbounce.utils.client.ClientUtils
 import net.ccbluex.liquidbounce.utils.client.MinecraftInstance
 import net.ccbluex.liquidbounce.utils.client.MinecraftInstance.Companion
 import net.ccbluex.liquidbounce.utils.render.IconUtils
@@ -25,16 +26,14 @@ object ClientConfiguration : Configurable("ClientConfiguration"), MinecraftInsta
 
     fun updateClientWindow() {
         if (clientTitle) {
-            // Set FDP title
             Display.setTitle(FDPClient.clientTitle)
-            // Update favicon
-            IconUtils.getFavicon()?.let { icons ->
-                Display.setIcon(icons)
+            runCatching {
+                IconUtils.getFavicon()?.let { Display.setIcon(it) }
+            }.onFailure {
+                ClientUtils.LOGGER.warn("Failed to set window icon", it)
             }
         } else {
-            // Set original title
             Display.setTitle("Minecraft 1.8.9")
-            // Update favicon
             mc.setWindowIcon()
         }
     }

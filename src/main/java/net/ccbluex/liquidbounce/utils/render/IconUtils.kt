@@ -21,12 +21,15 @@ import javax.imageio.ImageIO
 object IconUtils {
     @JvmStatic
     fun initLwjglIcon(): Boolean {
-        val icons = getFavicon()?.filterNotNull()?.toTypedArray()
-        if (!icons.isNullOrEmpty()) {
-            Display.setIcon(icons)
-            return true
-        }
-        return false
+        return runCatching {
+            val icons = getFavicon()?.filterNotNull()?.toTypedArray()
+            if (!icons.isNullOrEmpty()) {
+                Display.setIcon(icons)
+                true
+            } else false
+        }.onFailure {
+            ClientUtils.LOGGER.warn("Failed to set LWJGL icon", it)
+        }.getOrDefault(false)
     }
 
     fun getFavicon() =
