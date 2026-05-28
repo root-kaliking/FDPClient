@@ -59,40 +59,36 @@ class GuiClientConfiguration(val prevGui: GuiScreen) : AbstractScreen() {
         // Title button
         // Location > 1st row
         titleButton = +GuiButton(
-            4, width / 2 - 100, height / 4 + 25, "Client title (${if (ClientConfiguration.clientTitle) "On" else "Off"})"
+            4, width / 2 - 100, height / 4 + 25, "客户端标题 (${if (ClientConfiguration.clientTitle) "开" else "关"})"
         )
 
         languageButton = +GuiButton(
             7,
             width / 2 - 100,
             height / 4 + 50,
-            "Language (${overrideLanguage.ifBlank { "Game" }})"
+            "语言 (${overrideLanguage.ifBlank { "游戏默认" }})"
         )
 
-        // Background configuration buttons
-        // Button location > 2nd row
         backgroundButton = +GuiButton(
             0,
             width / 2 - 100,
             height / 4 + 25 + 75,
-            "Enabled (${if (customBackground) "On" else "Off"})"
+            "启用 (${if (customBackground) "开" else "关"})"
         )
 
         particlesButton = +GuiButton(
-            1, width / 2 - 100, height / 4 + 25 + 75 + 25, "Particles (${if (particles) "On" else "Off"})"
+            1, width / 2 - 100, height / 4 + 25 + 75 + 25, "粒子 (${if (particles) "开" else "关"})"
         )
 
-        +GuiButton(2, width / 2 - 100, height / 4 + 25 + 75 + 25 * 2, 98, 20, "Change wallpaper")
+        +GuiButton(2, width / 2 - 100, height / 4 + 25 + 75 + 25 * 2, 98, 20, "更换壁纸")
 
-        +GuiButton(3, width / 2 + 2, height / 4 + 25 + 75 + 25 * 2, 98, 20, "Reset wallpaper")
+        +GuiButton(3, width / 2 + 2, height / 4 + 25 + 75 + 25 * 2, 98, 20, "重置壁纸")
 
-        // AltManager configuration buttons
-        // Location > 3rd row
         altsModeButton = +GuiButton(
             6,
             width / 2 - 100,
             height / 4 + 25 + 185,
-            "Random alts mode (${if (stylisedAlts) "Stylised" else "Legacy"})"
+            "随机账号模式 (${if (stylisedAlts) "美化" else "传统"})"
         )
 
         altsSlider = +GuiSlider(
@@ -101,7 +97,7 @@ class GuiClientConfiguration(val prevGui: GuiScreen) : AbstractScreen() {
             height / 4 + 210 + 25,
             200,
             20,
-            "${if (stylisedAlts && unformattedAlts) "Random alt max" else "Random alt"} length (",
+            "${if (stylisedAlts && unformattedAlts) "最大随机账号" else "随机账号"} 长度 (",
             ")",
             6.0,
             16.0,
@@ -116,7 +112,7 @@ class GuiClientConfiguration(val prevGui: GuiScreen) : AbstractScreen() {
             5,
             width / 2 - 100,
             height / 4 + 235 + 25,
-            "Unformatted alt names (${if (unformattedAlts) "On" else "Off"})"
+            "未格式化账号名 (${if (unformattedAlts) "开" else "关"})"
         ).also {
             it.enabled = stylisedAlts
         }
@@ -124,40 +120,39 @@ class GuiClientConfiguration(val prevGui: GuiScreen) : AbstractScreen() {
         altPrefixField = GuiTextField(2, Fonts.fontSemibold35, width / 2 - 100, height / 4 + 260 + 25, 200, 20)
         altPrefixField.maxStringLength = 16
 
-        // Back button
-        +GuiButton(8, width / 2 - 100, height / 4 + 25 + 25 + 25 * 11, "Back")
+        +GuiButton(8, width / 2 - 100, height / 4 + 25 + 25 + 25 * 11, "返回")
     }
 
     override fun actionPerformed(button: GuiButton) {
         when (button.id) {
             0 -> {
                 customBackground = !customBackground
-                backgroundButton.displayString = "Enabled (${if (customBackground) "On" else "Off"})"
+                backgroundButton.displayString = "启用 (${if (customBackground) "开" else "关"})"
             }
 
             1 -> {
                 particles = !particles
-                particlesButton.displayString = "Particles (${if (particles) "On" else "Off"})"
+                particlesButton.displayString = "粒子 (${if (particles) "开" else "关"})"
             }
 
             4 -> {
                 ClientConfiguration.clientTitle = !ClientConfiguration.clientTitle
-                titleButton.displayString = "Client title (${if (ClientConfiguration.clientTitle) "On" else "Off"})"
+                titleButton.displayString = "客户端标题 (${if (ClientConfiguration.clientTitle) "开" else "关"})"
                 updateClientWindow()
             }
 
             5 -> {
                 unformattedAlts = !unformattedAlts
-                unformattedAltsButton.displayString = "Unformatted alt names (${if (unformattedAlts) "On" else "Off"})"
-                altsSlider.dispString = "${if (unformattedAlts) "Max random alt" else "Random alt"} length ("
+                unformattedAltsButton.displayString = "未格式化账号名 (${if (unformattedAlts) "开" else "关"})"
+                altsSlider.dispString = "${if (unformattedAlts) "最大随机账号" else "随机账号"} 长度 ("
                 altsSlider.updateSlider()
             }
 
             6 -> {
                 stylisedAlts = !stylisedAlts
-                altsModeButton.displayString = "Random alts mode (${if (stylisedAlts) "Stylised" else "Legacy"})"
+                altsModeButton.displayString = "随机账号模式 (${if (stylisedAlts) "美化" else "传统"})"
                 altsSlider.dispString =
-                    "${if (stylisedAlts && unformattedAlts) "Max random alt" else "Random alt"} length ("
+                    "${if (stylisedAlts && unformattedAlts) "最大随机账号" else "随机账号"} 长度 ("
                 altsSlider.updateSlider()
                 unformattedAltsButton.enabled = stylisedAlts
             }
@@ -178,7 +173,7 @@ class GuiClientConfiguration(val prevGui: GuiScreen) : AbstractScreen() {
                         "png" -> backgroundImageFile
                         "frag", "glsl", "shader" -> backgroundShaderFile
                         else -> {
-                            showMessageDialog("Error", "Invalid file extension: $fileExtension")
+                            showMessageDialog("错误", "无效的文件扩展名: $fileExtension")
                             return
                         }
                     }
@@ -219,7 +214,7 @@ class GuiClientConfiguration(val prevGui: GuiScreen) : AbstractScreen() {
                     }
                 }
 
-                languageButton.displayString = "Language (${overrideLanguage.ifBlank { "Game" }})"
+                languageButton.displayString = "语言 (${overrideLanguage.ifBlank { "游戏默认" }})"
             }
 
             8 -> mc.displayGuiScreen(prevGui)
@@ -233,14 +228,14 @@ class GuiClientConfiguration(val prevGui: GuiScreen) : AbstractScreen() {
         )
 
         Fonts.fontSemibold40.drawString(
-            "Window", width / 2F - 98F, height / 4F + 15F, 0xFFFFFF, true
+            "窗口", width / 2F - 98F, height / 4F + 15F, 0xFFFFFF, true
         )
 
         Fonts.fontSemibold40.drawString(
-            "Background", width / 2F - 98F, height / 4F + 90F, 0xFFFFFF, true
+            "背景", width / 2F - 98F, height / 4F + 90F, 0xFFFFFF, true
         )
         Fonts.fontSemibold35.drawString(
-            "Supported background types: (.png, .frag, .glsl)",
+            "支持的背景类型: (.png, .frag, .glsl)",
             width / 2F - 98F,
             height / 4F + 100 + 25 * 3,
             0xFFFFFF,

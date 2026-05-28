@@ -166,32 +166,32 @@ object SideGuiConfigsManager {
 
     private fun loadLocalConfig(configName: String, file: File) {
         try {
-            displayChatMessage("Loading local configuration: $configName...")
+            displayChatMessage("正在加载本地配置: $configName...")
             val localConfigContent = Files.readAllBytes(file.toPath()).toString(StandardCharsets.UTF_8)
             applyScript(localConfigContent)
-            displayChatMessage("Local configuration $configName loaded successfully!")
+            displayChatMessage("本地配置 $configName 加载成功!")
         } catch (e: IOException) {
-            displayChatMessage("Error loading local configuration: ${e.message}")
+            displayChatMessage("加载本地配置失败: ${e.message}")
         }
     }
 
     private fun loadOnlineConfig(settingId: String, configName: String) {
         try {
-            displayChatMessage("Loading configuration: $configName...")
+            displayChatMessage("正在加载配置: $configName...")
             val configScript = ClientApi.getSettingsScript("legacy", settingId)
             applyScript(configScript)
-            displayChatMessage("Configuration $configName loaded successfully!")
+            displayChatMessage("配置 $configName 加载成功!")
         } catch (e: Exception) {
-            displayChatMessage("Error loading configuration: ${e.message}")
+            displayChatMessage("加载配置失败: ${e.message}")
         }
     }
 
     private fun openFolder() {
         try {
             Desktop.getDesktop().open(fileManager.settingsDir)
-            displayChatMessage("Opening configuration folder...")
+            displayChatMessage("正在打开配置文件夹...")
         } catch (e: IOException) {
-            displayChatMessage("Error opening folder: ${e.message}")
+            displayChatMessage("打开文件夹失败: ${e.message}")
         }
     }
 }

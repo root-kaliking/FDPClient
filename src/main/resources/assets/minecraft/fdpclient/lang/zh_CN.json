@@ -13,8 +13,14 @@
     "menu.serverStatus": "服务器状态",
     "menu.configuration": "配置",
     "menu.contributors": "贡献者",
+    "menu.scripts": "脚本",
+    "menu.settings": "设置",
+    "menu.capeManager": "披风管理",
+    "menu.clientFixes": "客户端修复",
 
     "menu.discordRPC.typeBox": "在此处输入..",
+
+    "menu.altManager.typeCustomPrefix": "输入自定义名称前缀...",
 
     "button.back": "返回",
     "button.moveUp": "上移",
@@ -23,6 +29,14 @@
     "button.export": "导出",
     "button.add": "添加",
     "button.remove": "移除",
+    "button.delete": "删除",
+    "button.reload": "刷新",
+    "button.folder": "文件夹",
+    "button.docs": "文档",
+    "button.done": "完成",
+    "button.ignore": "忽略",
+    "button.download": "下载",
+    "button.quit": "退出",
 
     "button.altManager.copy": "复制账号名称",
     "button.altManager.login": "登录账号",
@@ -33,11 +47,13 @@
     "button.altManager.cape": "披风管理",
     "button.altManager.sessionLogin": "Token登录",
     "button.altManager.buy": "购买",
+    "button.altManager.reload": "刷新",
 
     "button.fontManager.edit": "编辑",
 
     "button.openURL": "打开网址",
     "button.cancel": "取消",
+    "button.findScripts": "查找脚本",
 
     "text.fontManager.name": "名称",
     "text.fontManager.size": "大小",
@@ -48,7 +64,133 @@
     "text.Search": "§7账号搜索",
     "text.Loggingintoaccount": "正在登录账号",
 
-    "menu.altManager.typeCustomPrefix": "输入自定义名称前缀...",
+    "text.altManager.alts": "%d 个账号",
+    "text.altManager.searchResults": "搜索结果",
+    "text.altManager.idle": "§7空闲中...",
+    "text.altManager.accountRemoved": "§a该账号已被移除。",
+    "text.altManager.selectAccount": "§c请先选择一个账号。",
+    "text.altManager.loggedIn": "§a已登录 §f§l%s§a。",
+    "text.altManager.loginFailed": "§c登录失败：%s",
+    "text.altManager.loggingIn": "§a正在登录...",
+    "text.altManager.noAccounts": "§c您没有任何账号。",
+    "text.altManager.importSuccess": "§a账号导入成功。",
+    "text.altManager.noAccountsToExport": "§c没有可导出的账号。",
+    "text.altManager.exportSuccess": "§a导出成功！",
+    "text.altManager.exportFailed": "§c导出失败：%s",
+    "text.altManager.copied": "§a账号信息已复制到剪贴板。",
+    "text.altManager.user": "§7用户: §a%s",
+
+    "text.fontManager.idle": "§7空闲中...",
+    "text.fontManager.failedToLoad": "§c加载字体文件失败！",
+    "text.fontManager.failedToRemove": "§c移除字体信息失败！",
+
+    "text.window": "窗口",
+    "text.background": "背景",
+    "text.supportedBackgroundTypes": "支持的背景类型：(.png, .frag, .glsl)",
+
+    "text.apiConnection": "API连接",
+    "text.yourCurrentBuild": "当前版本",
+    "text.changelogs": "更新日志",
+    "text.bugsFixed": "已修复错误",
+    "text.latest": "§e(最新)",
+    "text.apiDead": "§c(API已失效)",
+    "text.outdated": "§c(已过时)",
+    "text.forgeMods": "Forge模组",
+    "text.language": "语言",
+    "text.minecraftSettings": "Minecraft设置",
+    "text.cosmetics": "装饰",
+    "text.commitInfo": "提交信息",
+    "text.checkUpdate": "§a检查更新",
+    "text.fontManager": "字体管理",
+    "text.altManager2": "帐号管理",
+
+    "text.antiForge": "反Forge",
+    "text.blockFML": "阻止FML",
+    "text.blockFMLProxy": "阻止FML代理包",
+    "text.blockNonMCPayloads": "阻止非MC负载",
+    "text.brand": "品牌",
+    "text.blockResourcePackExploit": "阻止资源包漏洞",
+    "text.fixes": "修复",
+    "text.on": "开",
+    "text.off": "关",
+
+    "text.clientTitle": "客户端标题",
+    "text.languageSetting": "语言",
+    "text.game": "游戏默认",
+    "text.enabled": "启用",
+    "text.changeWallpaper": "更换壁纸",
+    "text.resetWallpaper": "重置壁纸",
+    "text.randomAltsMode": "随机账号模式",
+    "text.stylised": "美化",
+    "text.legacy": "传统",
+    "text.unformattedAltNames": "未格式化账号名",
+    "text.randomAltLength": "随机账号长度",
+    "text.maxRandomAltLength": "最大随机账号长度",
+    "text.particles": "粒子",
+
+    "text.capeManager": "披风管理",
+    "text.gitInfo": "Git信息",
+    "text.builtBy": "构建者",
+    "text.version": "版本",
+    "text.commitId": "提交ID",
+    "text.commitMessage": "提交信息",
+    "text.branch": "分支",
+    "text.remoteOrigin": "远程仓库",
+    "text.developers": "开发者",
+
+    "text.newBuildAvailable": "新版本可用！",
+    "text.pressDownload": "点击\"下载\"访问我们的网站，或点击\"确定\"忽略此消息。",
+    "text.lastOfficialRelease": "最新正式版",
+    "text.lastBeta": "最新测试版",
+    "text.lastCommit": "最后提交",
+    "text.loading": "加载中...",
+    "text.unavailable": "不可用",
+    "text.newUpdateAvailable": "新更新可用！",
+    "text.goToDownloadPage": "前往下载页面",
+    "text.reloadAPI": "刷新API",
+    "text.joinDiscord": "加入Discord",
+    "text.failedToReloadAPI": "刷新API失败",
+
+    "text.spotifyTitle": "SpotifyCraft 显示",
+    "text.spotifySubtitle": "在FDPClient内控制Spotify播放",
+    "text.spotifySaveCredentials": "保存凭证",
+    "text.spotifyBrowserAuth": "启动浏览器授权",
+    "text.spotifyAutoReconnect": "自动重连",
+    "text.spotifyPollInterval": "轮询间隔",
+    "text.spotifyDisableModule": "禁用Spotify模块",
+    "text.spotifyEnableModule": "启用Spotify模块",
+    "text.spotifyLinkAccount": "关联账号",
+    "text.spotifyAuthorize": "授权",
+    "text.spotifyOpenDashboard": "打开仪表盘",
+    "text.spotifyAuthGuide": "授权指南",
+    "text.spotifyOpenMusicBrowser": "打开音乐浏览器",
+    "text.spotifyEnableToSync": "启用Spotify模块以开始同步播放。",
+    "text.spotifyWaitingForData": "等待Spotify播放数据。请在任意设备上启动Spotify并保持播放。",
+    "text.spotifyCoverUnavailable": "封面不可用",
+    "text.spotifyPlaying": "播放中",
+    "text.spotifyPaused": "已暂停",
+    "text.spotifyConnection": "连接",
+    "text.spotifyModuleState": "模块状态",
+    "text.spotifyLastError": "上次错误",
+    "text.spotifyQuickConnect": "快速连接",
+    "text.spotifyAvailable": "可用",
+    "text.spotifyAccountLinking": "账号关联",
+    "text.spotifyManualModeHint": "使用Spotify应用客户端ID/密钥和刷新令牌。",
+    "text.spotifyQuickModeHint": "快速连接将存储自身凭证。只需运行浏览器授权即可。",
+    "text.spotifyClientId": "客户端ID",
+    "text.spotifyClientSecret": "客户端密钥",
+    "text.spotifyRefreshToken": "刷新令牌",
+    "text.spotifySavedCredentials": "已保存手动凭证。",
+    "text.spotifyCredentialsRequired": "手动模式需要客户端ID、密钥和刷新令牌。",
+    "text.spotifyBrowserAuthError": "无法启动浏览器授权。",
+    "text.spotifyStatus": "状态",
+
+    "text.fontEditorName": "名称：",
+    "text.fontEditorSize": "大小：",
+    "text.fontEditorOK": "确定",
+    "text.fontEditorCancel": "取消",
+    "text.fontEditorError": "错误",
+    "text.fontEditorInvalidFontInfo": "无效的字体信息！",
 
     "notification.moduleEnabled": "已启用 %s",
     "notification.moduleDisabled": "已禁用 %s",
@@ -79,7 +221,7 @@
 
     "module.bedPlates.description": "允许您看到床周围的方块。",
 
-    "module.pointerESP.description": "允许您pointed实体的位置。",
+    "module.pointerESP.description": "允许您看到指向实体的位置。",
 
     "module.projectileAimbot.description": "拉弓时自动瞄准玩家。",
 
@@ -107,6 +249,10 @@
 
     "module.abortBreaking.description": "允许你停止破坏方块而不会丢失破坏进度。",
 
+    "module.airJump.description": "允许你在空中跳跃。",
+
+    "module.airLadder.description": "允许你爬上悬空的梯子或藤蔓。",
+
     "module.ambience.description": "改变世界时间和天气。(视觉上)",
 
     "module.antiHunger.description": "防止饥饿。",
@@ -115,7 +261,7 @@
 
     "module.clip.description": "允许你clip通过方块。",
 
-    "module.antiBounce.description": "防止你在方块上弹跳.",
+    "module.antiBounce.description": "防止你在方块上弹跳。",
 
     "module.animations.description": "自定义格挡动画。",
 
@@ -131,11 +277,13 @@
 
     "module.antiFireball.description": "自动打走火球。",
 
+    "module.antiVanish.description": "自动检测消失的玩家。",
+
     "module.antiVoid.description": "坠落一定距离后自动拉回。(虚空回弹)",
 
     "module.atAllProvider.description": "当你在消息中使用'@a'时，自动提及服务器上的所有人。",
 
-    "module.attackEffects.description": "自定义攻击时显示的效果。",
+    "module.attackEffects.description": "攻击时显示效果。",
 
     "module.autoAccount.description": "功能丰富的自动注册/登录和帐号管理器。",
 
@@ -157,7 +305,7 @@
 
     "module.blink.description": "挂起所有移动数据包(达到开关后瞬间移动的效果)。",
 
-    "module.bedProtectionESP.description": "帮助你找到保护床所需放置方块的位置。 ",
+    "module.bedProtectionESP.description": "帮助你找到保护床所需放置方块的位置。",
 
     "module.blockESP.description": "允许你透过墙壁看到指定的方块。",
 
@@ -257,6 +405,8 @@
 
     "module.kick.description": "把自己踢出服务器。",
 
+    "module.ladderJump.description": "碰到梯子时把你弹射到天上。(AAC)",
+
     "module.liquidChat.description": "允许你与其他LiquidBounce用户聊天。",
 
     "module.liquidWalk.description": "允许你在水上行走。",
@@ -277,6 +427,8 @@
 
     "module.noBob.description": "禁用视角摇晃效果。",
 
+    "module.noBooks.description": "阻止服务器打开书本（强制广告等）。",
+
     "module.noClip.description": "允许你自由穿行于墙壁 (需要有沙子落在头上)。",
 
     "module.noFOV.description": "禁用由速度等效果引起的视野变化。",
@@ -293,11 +445,13 @@
 
     "module.noRotateSet.description": "防止服务器旋转你的头。",
 
+    "module.noScoreboard.description": "禁用计分板。",
+
     "module.noSlotSet.description": "防止服务器更改你的物品栏。",
 
     "module.noSlow.description": "消除灵魂沙和使用物品造成的减速效果。",
 
-    "module.noSlowBreak.description": "消除负面影响造成的破坏减速。",
+    "module.noSlowBreak.description": "自动调整使用影响破坏速度的模块时的破坏速度。",
 
     "module.noSwing.description": "禁用击打实体/挖方块时的摆臂动作。",
 
@@ -385,6 +539,8 @@
 
     "module.wallClimb.description": "允许你像蜘蛛一样爬上墙壁。",
 
+    "module.waterSpeed.description": "允许你游得更快。",
+
     "module.xRay.description": "允许你透过墙壁看到矿石。",
 
     "module.zoot.description": "移除所有负面药水效果/火焰。",
@@ -405,6 +561,54 @@
 
     "module.chineseHat.description": "给实体戴上一顶帽子。",
 
-    "module.jumpCircle.description": "跳跃时在玩家底下生成一个圆环。"
+    "module.jumpCircle.description": "跳跃时在玩家底下生成一个圆环。",
+
+    "module.combatVisuals.description": "击杀敌人时添加视觉效果。",
+
+    "module.infiniteAura.description": "允许你在普通杀戮光环中以超出一定数量方块的距离攻击。",
+
+    "module.delayRemover.description": "移除1.8版本的攻击延迟。",
+
+    "module.gapple.description": "在PVP时自动使用金苹果或附魔金苹果。",
+
+    "module.customModel.description": "为玩家添加自定义模型。",
+
+    "module.tntTrails.description": "显示TNT轨迹。",
+
+    "module.capeManager.description": "客户端披风管理器。",
+
+    "module.chatControl.description": "控制您的聊天，更改聊天限制等。",
+
+    "module.discordRPCModule.description": "在您的Discord个人资料中显示客户端活动。",
+
+    "module.hudDesigner.description": "自定义您的HUD。",
+
+    "module.IRCModule.description": "为客户端用户提供的独立聊天。",
+
+    "module.noAchievement.description": "移除游戏内成就的显示。",
+
+    "module.snakeGame.description": "免费的贪吃蛇游戏。",
+
+    "module.target.description": "瞄准玩家、怪物、动物等。",
+
+    "module.lightningdetect.description": "检测闪电击中位置及坐标。",
+
+    "module.autoRole.description": "为您或朋友添加特殊的(视觉)角色。",
+
+    "module.brandSpoofer.description": "伪装发送给服务器的客户端品牌。",
+
+    "module.wings.description": "添加翅膀视觉效果。",
+
+    "module.targetModule.description": "禁用或启用目标攻击。",
+
+    "module.drinkingAlert.description": "有玩家喝药水时发出提醒。",
+
+    "module.silentHotbarModule.description": "控制在哪些场景下应渲染静默选择的物品。",
+
+    "module.notifier.description": "通知您所有事件。",
+
+    "module.fireFlies.description": "在玩家周围显示萤火虫视觉效果。",
+
+    "module.hitBubbles.description": "显示攻击气泡视觉效果。"
   }
 }

@@ -35,7 +35,7 @@ class GuiServerStatus(private val prevGui: GuiScreen) : AbstractScreen() {
     )
 
     override fun initGui() {
-        +GuiButton(1, width / 2 - 100, height / 4 + 145, "Back")
+        +GuiButton(1, width / 2 - 100, height / 4 + 145, "返回")
 
         loadInformation()
     }
@@ -63,11 +63,11 @@ class GuiServerStatus(private val prevGui: GuiScreen) : AbstractScreen() {
                             )
                         ) "§c" else if (color.equals("yellow", ignoreCase = true)) "§e" else "§a"
                     }${
-                        if (color.equals("red", ignoreCase = true)) "Offline" else if (color.equals(
+                        if (color.equals("red", ignoreCase = true)) "离线" else if (color.equals(
                                 "yellow",
                                 ignoreCase = true
                             )
-                        ) "Loading..." else "Online"
+                        ) "加载中..." else "在线"
                     }", width / 2f, i.toFloat(), Color.WHITE.rgb
                 )
                 i += Fonts.fontSemibold40.fontHeight

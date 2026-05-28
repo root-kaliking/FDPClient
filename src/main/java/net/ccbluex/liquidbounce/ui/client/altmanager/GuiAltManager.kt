@@ -41,7 +41,7 @@ import java.util.*
 
 class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
 
-    var status = "§7Idle..."
+    var status = "§7空闲中..."
 
     private lateinit var loginButton: GuiButton
     private lateinit var randomAltButton: GuiButton
@@ -83,7 +83,7 @@ class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
         randomNameButton = +GuiButton(5, 5, startPositionY + 24 * 3, 90, 20, translationButton("altManager.randomName"))
         +GuiButton(6, 5, startPositionY + 24 * 4, 90, 20, translationButton("altManager.directLogin"))
         +GuiButton(10, 5, startPositionY + 24 * 5, 90, 20, translationButton("altManager.sessionLogin"))
-            +GuiButton(11, 5, startPositionY + 24 * 7, 90, 20, "Reload")
+            +GuiButton(11, 5, startPositionY + 24 * 7, 90, 20, "刷新")
     }
 
     override fun drawScreen(mouseX: Int, mouseY: Int, partialTicks: Float) {
@@ -92,19 +92,19 @@ class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
             altsList.drawScreen(mouseX, mouseY, partialTicks)
             Fonts.fontSemibold40.drawCenteredStringWithShadow(translationMenu("altManager"), width / 2f, 6f, 0xffffff)
             Fonts.fontSemibold35.drawCenteredStringWithShadow(
-                if (searchField.text.isEmpty()) "${accountsConfig.accounts.size} Alts" else altsList.accounts.size.toString() + " Search Results",
+                if (searchField.text.isEmpty()) "${accountsConfig.accounts.size} 个账号" else altsList.accounts.size.toString() + " 搜索结果",
                 width / 2f,
                 18f,
                 0xffffff
             )
             Fonts.fontSemibold35.drawCenteredString(status, width / 2f, 32f, 0xffffff)
             Fonts.fontSemibold35.drawStringWithShadow(
-                "§7User: §a${mc.getSession().username}", 6f, 6f, 0xffffff
+                "§7用户: §a${mc.getSession().username}", 6f, 6f, 0xffffff
             )
 
             searchField.drawTextBox()
             if (searchField.text.isEmpty() && !searchField.isFocused) Fonts.fontSemibold40.drawStringWithShadow(
-                "§7Search...", searchField.xPosition + 4f, 17f, 0xffffff
+                "§7搜索...", searchField.xPosition + 4f, 17f, 0xffffff
             )
         }
 
@@ -124,9 +124,9 @@ class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
                 status = if (altsList.selectedSlot != -1 && altsList.selectedSlot < altsList.size) {
                     accountsConfig.removeAccount(altsList.accounts[altsList.selectedSlot])
                     saveConfig(accountsConfig)
-                    "§aThe account has been removed."
+                    "§a该账号已被移除。"
                 } else {
-                    "§cSelect an account."
+                    "§c请先选择一个账号。"
                 }
             }
 
@@ -137,17 +137,17 @@ class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
                     randomNameButton.enabled = false
 
                     login(it, {
-                        status = "§aLogged into §f§l${mc.session.username}§a."
+                        status = "§a已登录 §f§l${mc.session.username}§a。"
                     }, { exception ->
-                        status = "§cLogin failed due to '${exception.message}'."
+                        status = "§c登录失败：${exception.message}"
                     }, {
                         loginButton.enabled = true
                         randomAltButton.enabled = true
                         randomNameButton.enabled = true
                     })
 
-                    "§aLogging in..."
-                } ?: "§cSelect an account."
+                    "§a正在登录..."
+                } ?: "§c请先选择一个账号。"
             }
 
             4 -> { // Random alt button
@@ -157,21 +157,21 @@ class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
                     randomNameButton.enabled = false
 
                     login(it, {
-                        status = "§aLogged into §f§l${mc.session.username}§a."
+                        status = "§a已登录 §f§l${mc.session.username}§a。"
                     }, { exception ->
-                        status = "§cLogin failed due to '${exception.message}'."
+                        status = "§c登录失败：${exception.message}"
                     }, {
                         loginButton.enabled = true
                         randomAltButton.enabled = true
                         randomNameButton.enabled = true
                     })
 
-                    "§aLogging in..."
-                } ?: "§cYou do not have any accounts."
+                    "§a正在登录..."
+                } ?: "§c您没有任何账号。"
             }
 
             5 -> { // Random name button
-                status = "§aLogged into §f§l${randomAccount().name}§a."
+                status = "§a已登录 §f§l${randomAccount().name}§a。"
             }
 
             6 -> { // Direct login button
@@ -193,12 +193,12 @@ class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
                 }
 
                 saveConfig(accountsConfig)
-                status = "§aThe accounts were imported successfully."
+                status = "§a账号导入成功。"
             }
 
             12 -> { // Export button
                 if (accountsConfig.accounts.isEmpty()) {
-                    status = "§cYou do not have any accounts to export."
+                    status = "§c没有可导出的账号。"
                     return
                 }
 
@@ -221,9 +221,9 @@ class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
                     }
                     file.writeText(accounts)
 
-                    status = "§aExported successfully!"
+                    status = "§a导出成功！"
                 } catch (e: Exception) {
-                    status = "§cUnable to export due to error: ${e.message}"
+                    status = "§c导出失败：${e.message}"
                 }
             }
 
@@ -231,7 +231,7 @@ class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
                 val currentAccount = altsList.selectedAccount
 
                 if (currentAccount == null) {
-                    status = "§cSelect an account."
+                    status = "§c请先选择一个账号。"
                     return
                 }
 
@@ -245,7 +245,7 @@ class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
 
                     // Copy to clipboard
                     MiscUtils.copy(formattedData)
-                    status = "§aCopied account into your clipboard."
+                    status = "§a账号信息已复制到剪贴板。"
                 } catch (any: Exception) {
                     any.printStackTrace()
                 }
@@ -258,7 +258,7 @@ class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
             13 -> { // Move Up Button
                 val currentAccount = altsList.selectedAccount
                 if (currentAccount == null) {
-                    status = "§cSelect an account."
+                    status = "§c请先选择一个账号。"
                     return
                 }
                 val currentIndex = altsList.accounts.indexOf(currentAccount)
@@ -276,7 +276,7 @@ class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
             14 -> { // Move Down Button
                 val currentAccount = altsList.selectedAccount
                 if (currentAccount == null) {
-                    status = "§cSelect an account."
+                    status = "§c请先选择一个账号。"
                     return
                 }
                 val currentIndex = altsList.accounts.indexOf(currentAccount)
@@ -394,17 +394,17 @@ class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
                     randomNameButton.enabled = false
 
                     login(it, {
-                        status = "§aLogged into §f§l${mc.session.username}§a."
+                        status = "§a已登录 §f§l${mc.session.username}§a。"
                     }, { exception ->
-                        status = "§cLogin failed due to '${exception.message}'."
+                        status = "§c登录失败：${exception.message}"
                     }, {
                         loginButton.enabled = true
                         randomAltButton.enabled = true
                         randomNameButton.enabled = true
                     })
 
-                    "§aLogging in..."
-                } ?: "§cSelect an account."
+                    "§a正在登录..."
+                } ?: "§c请先选择一个账号。"
             }
         }
 
@@ -418,7 +418,7 @@ class GuiAltManager(private val prevGui: GuiScreen) : AbstractScreen() {
 
             Fonts.minecraftFont.drawStringWithShadow(accountName, width / 2f - 40, y + 2f, Color.WHITE.rgb)
             Fonts.minecraftFont.drawStringWithShadow(
-                if (minecraftAccount is CrackedAccount) "Cracked" else if (minecraftAccount is MicrosoftAccount) "Microsoft" else if (minecraftAccount is MojangAccount) "Mojang" else "Something else",
+                if (minecraftAccount is CrackedAccount) "离线" else if (minecraftAccount is MicrosoftAccount) "微软" else if (minecraftAccount is MojangAccount) "Mojang" else "其他",
                 width / 2f,
                 y + 15f,
                 if (minecraftAccount is CrackedAccount) Color.GRAY.rgb else Color(118, 255, 95).rgb

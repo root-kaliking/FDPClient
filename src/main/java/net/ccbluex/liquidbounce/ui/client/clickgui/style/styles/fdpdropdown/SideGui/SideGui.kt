@@ -45,7 +45,7 @@ import kotlin.math.min
 
 class SideGui : GuiPanel() {
 
-    private val categories = arrayOf("UI", "Configs", "Color", "Background")
+    private val categories = arrayOf("界面", "配置", "颜色", "背景")
 
     var focused = false
     private var clickAnimation: Animation? = null
@@ -55,7 +55,7 @@ class SideGui : GuiPanel() {
     private var categoryAnimation = HashMap<String, Array<Animation>>()
     private var drag: Drag? = null
 
-    private var currentCategory = "UI"
+    private var currentCategory = "界面"
     private var scroll = 0f
     private var animScroll = 0f
 
@@ -166,10 +166,10 @@ class SideGui : GuiPanel() {
 
         // Category content
         when (currentCategory) {
-            "UI" -> drawUiCategory(alpha)
-            "Configs" -> SideGuiConfigsManager.drawConfigsCategory(mouseX, mouseY, alpha, drag!!, rectWidth)
-            "Color" -> SideGuiColorManager.drawColorCategory(mouseX, mouseY, alpha, drag!!, animScroll, rectHeight, smooth)
-            "Background" -> SideGuiBackgroundManager.drawBackgroundCategory(mouseX, mouseY, alpha, drag!!, animScroll, rectHeight)
+            "界面" -> drawUiCategory(alpha)
+            "配置" -> SideGuiConfigsManager.drawConfigsCategory(mouseX, mouseY, alpha, drag!!, rectWidth)
+            "颜色" -> SideGuiColorManager.drawColorCategory(mouseX, mouseY, alpha, drag!!, animScroll, rectHeight, smooth)
+            "背景" -> SideGuiBackgroundManager.drawBackgroundCategory(mouseX, mouseY, alpha, drag!!, animScroll, rectHeight)
         }
 
         drawOverlays(sr, alpha, mouseX, mouseY)
@@ -197,14 +197,14 @@ class SideGui : GuiPanel() {
         colorHexFocused = false
         bgHexFocused = false
 
-        if (currentCategory == "Color") {
+        if (currentCategory == "颜色") {
             checkColorCategoryInteractions(mouseX, mouseY, drag!!)
             val (hexX, hexY, hexW, hexH) = getColorHexFieldArea(drag!!)
             if (RenderUtils.isHovering(hexX, hexY, hexW, hexH, mouseX, mouseY)) {
                 colorHexFocused = true
             }
         }
-        if (currentCategory == "Background") {
+        if (currentCategory == "背景") {
             checkBackgroundInteractions(mouseX, mouseY)
             val (hexX, hexY, hexW, hexH) = getBgHexFieldArea(drag!!)
             if (RenderUtils.isHovering(hexX, hexY, hexW, hexH, mouseX, mouseY)) {

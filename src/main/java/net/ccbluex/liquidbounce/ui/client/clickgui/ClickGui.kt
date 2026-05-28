@@ -100,15 +100,15 @@ object ClickGui : GuiScreen() {
             ButtonElement(setting.name, { Integer.MAX_VALUE }) {
                 SharedScopes.IO.launch {
                     try {
-                        chat("Loading settings...")
+                        chat("正在加载设置...")
 
                         // Load settings and apply them
                         val settings = ClientApi.getSettingsScript(settingId = setting.settingId)
 
-                        chat("Applying settings...")
+                        chat("正在应用设置...")
                         SettingsUtils.applyScript(settings)
 
-                        chat("§6Settings applied successfully.")
+                        chat("§6设置应用成功。")
                         HUD.addNotification(Notification("Updated Settings", "!!!", Type.INFO, 60))
                         mc.playSound("random.anvil_use".asResourceLocation())
                     } catch (e: Exception) {

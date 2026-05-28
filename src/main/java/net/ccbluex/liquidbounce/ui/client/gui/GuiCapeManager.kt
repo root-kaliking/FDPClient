@@ -71,7 +71,7 @@ object GuiCapeManager : AbstractScreen() {
     }
 
     override fun initGui() {
-        +GuiButton(0, 0, 0, mc.fontRendererObj.getStringWidth("< QUIT") + 10, 20, "< QUIT")
+        +GuiButton(0, 0, 0, mc.fontRendererObj.getStringWidth("§c退出") + 10, 20, "§c退出")
         +GuiButton(1, (width * 0.3).toInt(), (height * 0.5).toInt(), mc.fontRendererObj.getStringWidth("<-") + 10, 20, "<-")
         +GuiButton(2, (width * 0.7).toInt(), (height * 0.5).toInt(), mc.fontRendererObj.getStringWidth("->") + 10, 20, "->")
         updateCapeStyle()
@@ -117,7 +117,7 @@ object GuiCapeManager : AbstractScreen() {
             -1
         )
         glScalef(2f, 2f, 2f)
-        Fonts.fontSemibold35.drawCenteredString("Cape Manager", width * 0.25f, height * 0.03f, -1)
+        Fonts.fontSemibold35.drawCenteredString("披风管理", width * 0.25f, height * 0.03f, -1)
         glPopMatrix()
 
         super.drawScreen(mouseX, mouseY, partialTicks)

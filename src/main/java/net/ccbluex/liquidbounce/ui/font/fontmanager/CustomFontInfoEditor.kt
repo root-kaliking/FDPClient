@@ -43,18 +43,18 @@ class CustomFontInfoEditor(
     init {
         layout = GridLayout(3, 2, 10, 10)
 
-        addGridItem(JLabel("Name:"))
+        addGridItem(JLabel("名称:"))
         addGridItem(nameField)
 
-        addGridItem(JLabel("Size:"))
+        addGridItem(JLabel("大小:"))
         addGridItem(sizeField)
 
-        val submitButton = JButton("OK").apply {
+        val submitButton = JButton("确定").apply {
             addActionListener { onSubmit() }
         }
         addGridItem(submitButton)
 
-        val cancelButton = JButton("Cancel").apply {
+        val cancelButton = JButton("取消").apply {
             addActionListener { dispose() }
         }
         addGridItem(cancelButton)
@@ -70,7 +70,7 @@ class CustomFontInfoEditor(
             formData = formData.copy(name = name, fontSize = fontSize)
             dispose()
         } else {
-            JOptionPane.showMessageDialog(this, "Invalid font info!", "Error", JOptionPane.ERROR_MESSAGE)
+            JOptionPane.showMessageDialog(this, "无效的字体信息！", "错误", JOptionPane.ERROR_MESSAGE)
         }
     }
 
