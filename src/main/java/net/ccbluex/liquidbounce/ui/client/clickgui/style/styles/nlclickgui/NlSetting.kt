@@ -30,7 +30,7 @@ class NlSetting {
             y = y2 + my
         }
         RoundedUtil.drawRound(x.toFloat(), y.toFloat(), 160f, 160f, 3f, if (Light) Color(238, 240, 235, 230) else Color(7, 13, 23, 230))
-        Fonts.Nl_15.drawString("About ${FDPClient.CLIENT_NAME}", (x + 13).toFloat(), (y + 4).toFloat(), if (Light) Color(95, 95, 95).rgb else -1)
+        Fonts.Nl_15.drawString("关于 ${FDPClient.CLIENT_NAME}", (x + 13).toFloat(), (y + 4).toFloat(), if (Light) Color(95, 95, 95).rgb else -1)
         Fonts.Nl_16_ICON.drawString("x", (x + 2).toFloat(), (y + 4).toFloat(), NeverloseGui.neverlosecolor.rgb)
         if (!Light) {
             NLOutline(FDPClient.CLIENT_NAME, Fonts.NLBold_35, x.toFloat(), (y + 30).toFloat(), -1, NeverloseGui.neverlosecolor.rgb, 160, 0.7f)
@@ -41,11 +41,11 @@ class NlSetting {
         if (version == "unknown") {
             version = FDPClient.CLIENT_VERSION
         }
-        Fonts.Nl_18.drawString((if (!Light) ChatFormatting.WHITE else ChatFormatting.BLACK).toString() + "Version: " + ChatFormatting.RESET + version, (x + 10).toFloat(), (y + 65).toFloat(), NeverloseGui.neverlosecolor.rgb)
+        Fonts.Nl_18.drawString((if (!Light) ChatFormatting.WHITE else ChatFormatting.BLACK).toString() + "版本: " + ChatFormatting.RESET + version, (x + 10).toFloat(), (y + 65).toFloat(), NeverloseGui.neverlosecolor.rgb)
         val buildType = "Development"
-        Fonts.Nl_18.drawString((if (!Light) ChatFormatting.WHITE else ChatFormatting.BLACK).toString() + "Build Type: " + ChatFormatting.RESET + buildType, (x + 10).toFloat(), (y + 65 + Fonts.Nl_18.height + 5).toFloat(), NeverloseGui.neverlosecolor.rgb)
+        Fonts.Nl_18.drawString((if (!Light) ChatFormatting.WHITE else ChatFormatting.BLACK).toString() + "构建类型: " + ChatFormatting.RESET + buildType, (x + 10).toFloat(), (y + 65 + Fonts.Nl_18.height + 5).toFloat(), NeverloseGui.neverlosecolor.rgb)
         val gitInfo = ClientUpdate.gitInfo
-        val rawBuildTime = gitInfo.getProperty("git.build.time", "Unknown")
+        val rawBuildTime = gitInfo.getProperty("git.build.time", "未知")
         var formattedBuildTime = rawBuildTime
         try {
             formattedBuildTime = DateTimeFormatter.ofPattern("dd:MM HH:mm").withZone(ZoneId.systemDefault()).format(Instant.parse(rawBuildTime))
@@ -55,10 +55,10 @@ class NlSetting {
             } catch (_: Exception) {
             }
         }
-        Fonts.Nl_18.drawString((if (!Light) ChatFormatting.WHITE else ChatFormatting.BLACK).toString() + "Build Date: " + ChatFormatting.RESET + formattedBuildTime, (x + 10).toFloat(), (y + 65 + (Fonts.Nl_18.height + 5) * 2).toFloat(), NeverloseGui.neverlosecolor.rgb)
-        Fonts.Nl_18.drawString((if (!Light) ChatFormatting.WHITE else ChatFormatting.BLACK).toString() + "Registered to: " + ChatFormatting.RESET + FDPClient.CLIENT_AUTHOR, (x + 10).toFloat(), (y + 65 + (Fonts.Nl_18.height + 5) * 3).toFloat(), NeverloseGui.neverlosecolor.rgb)
+        Fonts.Nl_18.drawString((if (!Light) ChatFormatting.WHITE else ChatFormatting.BLACK).toString() + "构建日期: " + ChatFormatting.RESET + formattedBuildTime, (x + 10).toFloat(), (y + 65 + (Fonts.Nl_18.height + 5) * 2).toFloat(), NeverloseGui.neverlosecolor.rgb)
+        Fonts.Nl_18.drawString((if (!Light) ChatFormatting.WHITE else ChatFormatting.BLACK).toString() + "注册给: " + ChatFormatting.RESET + FDPClient.CLIENT_AUTHOR, (x + 10).toFloat(), (y + 65 + (Fonts.Nl_18.height + 5) * 3).toFloat(), NeverloseGui.neverlosecolor.rgb)
         Fonts.Nl_18.drawCenteredString("fdpclient @ 2019", x + 80f, (y + 65 + (Fonts.Nl_18.height + 5) * 4 + 7).toFloat(), if (Light) Color(95, 95, 95).rgb else -1)
-        Fonts.Nl_18.drawString("Style", (x + 10).toFloat(), (y + 145).toFloat(), if (Light) Color(95, 95, 95).rgb else -1)
+        Fonts.Nl_18.drawString("样式", (x + 10).toFloat(), (y + 145).toFloat(), if (Light) Color(95, 95, 95).rgb else -1)
         if (Light) {
             RoundedUtil.drawRound((x + 39).toFloat(), (y + 143).toFloat(), 11.5f, 11.5f, 5.5f, NeverloseGui.neverlosecolor)
         }

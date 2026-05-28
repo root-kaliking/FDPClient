@@ -58,7 +58,7 @@ class EspPreviewComponent(private val gui: NeverloseGui) : MinecraftInstance {
     private var tagsOffX = -3f; private var tagsOffY = -3f
 
     private var controlMode = 0
-    private val modeNames = listOf("Rotation", "Zoom", "Box Pos", "Box Scale", "Health", "Armor", "Tags Pos", "Tags Scale")
+    private val modeNames = listOf("旋转", "缩放", "框位置", "框缩放", "血量", "盔甲", "标签位置", "标签缩放")
 
     private val openAnimation: Animation = EaseInOutQuad(250, 1.0, Direction.BACKWARDS)
     private val dFormat = DecimalFormat("0.0")
@@ -100,20 +100,20 @@ class EspPreviewComponent(private val gui: NeverloseGui) : MinecraftInstance {
         )
 
         Fonts.NlIcon.nlfont_20.nlfont_20.drawString("b", (previewX + 6).toFloat(), (previewY + 6).toFloat(), iconColor.rgb)
-        val title = "Interactive ESP Preview"
+        val title = "交互式ESP预览"
         Fonts.Nl_18.drawString(title, previewX + previewWidth - Fonts.Nl_18.stringWidth(title) - 6, (previewY + 7).toFloat(), textColor.rgb)
         resetColor()
 
         val currentModeName = modeNames[controlMode]
         val debugInfo = when (controlMode) {
-            0 -> "Yaw: ${customYaw.toInt()} | Pitch: ${customPitch.toInt()}"
-            1 -> "View Scale: ${customScale.toInt()}%"
-            2 -> "Box X: ${boxOffX.toInt()} | Y: ${boxOffY.toInt()}"
-            3 -> "Box Scale: ${(boxScale * 100).toInt()}%"
-            4 -> "HP X: ${hpOffX.toInt()} | Y: ${hpOffY.toInt()}"
-            5 -> "Armor X: ${armorOffX.toInt()} | Y: ${armorOffY.toInt()}"
-            6 -> "Tags X: ${tagsOffX.toInt()} | Y: ${tagsOffY.toInt()}"
-            7 -> "Tags Scale: ${(tagsScale * 100).toInt()}%"
+            0 -> "偏航角: ${customYaw.toInt()} | 俯仰角: ${customPitch.toInt()}"
+            1 -> "视角缩放: ${customScale.toInt()}%"
+            2 -> "框X: ${boxOffX.toInt()} | Y: ${boxOffY.toInt()}"
+            3 -> "框缩放: ${(boxScale * 100).toInt()}%"
+            4 -> "血量X: ${hpOffX.toInt()} | Y: ${hpOffY.toInt()}"
+            5 -> "盔甲X: ${armorOffX.toInt()} | Y: ${armorOffY.toInt()}"
+            6 -> "标签X: ${tagsOffX.toInt()} | Y: ${tagsOffY.toInt()}"
+            7 -> "标签缩放: ${(tagsScale * 100).toInt()}%"
             else -> ""
         }
         Fonts.Nl_16.drawCenteredString("$currentModeName [$debugInfo]", previewX + previewWidth / 2f, previewY + 22f, Color(150, 150, 150).rgb)
@@ -252,7 +252,7 @@ class EspPreviewComponent(private val gui: NeverloseGui) : MinecraftInstance {
         }
 
         RoundedUtil.drawRoundOutline(manageButtonX, manageButtonY, manageButtonWidth, manageButtonHeight, 3f, 0.1f, manageBg, manageOutline)
-        val manageLabel = if (visuals.isEmpty()) "No visual modules active" else if (managingElements) "Close visual manager" else "Manage active visuals"
+        val manageLabel = if (visuals.isEmpty()) "无视觉模块激活" else if (managingElements) "关闭视觉管理" else "管理活跃视觉"
         val manageLabelY = manageButtonY + (manageButtonHeight - Fonts.Nl_16.height) / 2f
         Fonts.Nl_16.drawCenteredString(manageLabel, manageButtonX + manageButtonWidth / 2f, manageLabelY, textColor.rgb)
 
@@ -513,7 +513,7 @@ class EspPreviewComponent(private val gui: NeverloseGui) : MinecraftInstance {
     }
 
     private fun drawManagerHeader(mouseX: Int, mouseY: Int, previewX: Int, previewWidth: Float, panelY: Float, textColor: Color) {
-        Fonts.Nl_16.drawString("Visual modules", previewX + 10f, panelY + 8f, textColor.rgb)
+        Fonts.Nl_16.drawString("视觉模块", previewX + 10f, panelY + 8f, textColor.rgb)
         val closeIconX = previewX + previewWidth - 16f
         val closeIconY = panelY + 5f
         val hoveringClose = isHovering(closeIconX, closeIconY, 12f, 12f, mouseX, mouseY)

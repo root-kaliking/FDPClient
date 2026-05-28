@@ -7,6 +7,7 @@ package net.ccbluex.liquidbounce.ui.client.clickgui.style.styles
 
 import net.ccbluex.liquidbounce.config.*
 import net.ccbluex.liquidbounce.features.module.modules.client.ClickGUIModule.scale
+import net.ccbluex.liquidbounce.handler.lang.translation
 import net.ccbluex.liquidbounce.ui.client.clickgui.ClickGui.clamp
 import net.ccbluex.liquidbounce.ui.client.clickgui.Panel
 import net.ccbluex.liquidbounce.ui.client.clickgui.elements.ButtonElement
@@ -163,7 +164,7 @@ object BlackStyle : Style() {
 
                     when (value) {
                         is BoolValue -> {
-                            val text = value.name
+                            val text = translateValueName(value.name)
 
                             moduleElement.settingsWidth = fontSemibold35.getStringWidth(text) + 8
 
@@ -181,7 +182,7 @@ object BlackStyle : Style() {
                         }
 
                         is ListValue -> {
-                            val text = value.name
+                            val text = translateValueName(value.name)
 
                             moduleElement.settingsWidth = fontSemibold35.getStringWidth(text) + 16
 
@@ -227,7 +228,7 @@ object BlackStyle : Style() {
                         }
 
                         is FloatValue -> {
-                            val text = value.name + "§f: " + round(value.get()) + " §7$suffix"
+                            val text = translateValueName(value.name) + "§f: " + round(value.get()) + " §7$suffix"
 
                             moduleElement.settingsWidth = fontSemibold35.getStringWidth(text) + 8
 
@@ -264,7 +265,7 @@ object BlackStyle : Style() {
 
                         is BlockValue -> {
                             val text =
-                                value.name + "§f: " + getBlockName(value.get()) + " (" + value.get() + ")" + " §7$suffix"
+                                translateValueName(value.name) + "§f: " + getBlockName(value.get()) + " (" + value.get() + ")" + " §7$suffix"
 
                             moduleElement.settingsWidth = fontSemibold35.getStringWidth(text) + 8
 
@@ -298,7 +299,7 @@ object BlackStyle : Style() {
                         }
 
                         is IntValue -> {
-                            val text = value.name + "§f: " + value.get() + " §7$suffix"
+                            val text = translateValueName(value.name) + "§f: " + value.get() + " §7$suffix"
 
                             moduleElement.settingsWidth = fontSemibold35.getStringWidth(text) + 8
 
@@ -333,7 +334,7 @@ object BlackStyle : Style() {
                             val slider1 = value.get().first
                             val slider2 = value.get().last
 
-                            val text = "${value.name}§f: $slider1 - $slider2 §7$suffix"
+                            val text = "${translateValueName(value.name)}§f: $slider1 - $slider2 §7$suffix"
                             moduleElement.settingsWidth = fontSemibold35.getStringWidth(text) + 8
 
                             val x = minX + 4
@@ -409,7 +410,7 @@ object BlackStyle : Style() {
                             val slider1 = value.get().start
                             val slider2 = value.get().endInclusive
 
-                            val text = "${value.name}§f: ${round(slider1)} - ${round(slider2)} §7$suffix"
+                            val text = "${translateValueName(value.name)}§f: ${round(slider1)} - ${round(slider2)} §7$suffix"
                             moduleElement.settingsWidth = fontSemibold35.getStringWidth(text) + 8
 
                             val x = minX + 4
@@ -568,7 +569,7 @@ object BlackStyle : Style() {
                             }
 
 
-                            val startText = "${value.name}: "
+                            val startText = "${translateValueName(value.name)}: "
                             val valueText = "#%08X".format(currentColor.rgb)
                             val combinedText = startText + valueText
 
@@ -884,7 +885,7 @@ object BlackStyle : Style() {
                         }
 
                         else -> {
-                            val startText = value.name + "§f: "
+                            val startText = translateValueName(value.name) + "§f: "
                             var valueText = "${value.get()}"
 
                             val combinedWidth = fontSemibold35.getStringWidth(startText + valueText)
@@ -978,5 +979,11 @@ object BlackStyle : Style() {
         }
 
         return false
+    }
+
+    private fun translateValueName(name: String): String {
+        val key = "value.${name.replace(' ', '-').lowercase()}.name"
+        val translated = translation(key)
+        return if (translated == key) name else translated
     }
 }
