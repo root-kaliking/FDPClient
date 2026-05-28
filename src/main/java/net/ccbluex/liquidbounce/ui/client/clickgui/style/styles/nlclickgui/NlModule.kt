@@ -176,8 +176,8 @@ class NlModule(var NlSub: NlSub, var module: Module, var lef: Boolean) {
         rendertoggle()
 
         if (module.values.isEmpty()) {
-            Fonts.Nl.Nl_22.Nl_22!!.drawString(
-                "No settings.",
+            Fonts.minecraftFont.drawString(
+                "无设置。",
                 x + 100 + posx,
                 y + posy + scrollY + NeverloseGui.HEADER_HEIGHT + 42,
                 if (getInstance().light) Color(95, 95, 95).rgb else -1

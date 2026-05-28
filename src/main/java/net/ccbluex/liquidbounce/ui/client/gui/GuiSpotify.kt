@@ -107,7 +107,7 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
             configurationFieldStart + configurationSpacing * 3 + 6,
             fieldWidth,
             20,
-            "Save credentials"
+            "保存凭证"
         )
         browserButton = +GuiButton(
             BUTTON_BROWSER,
@@ -115,7 +115,7 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
             saveButton.yPosition + saveButton.height + 4,
             fieldWidth,
             20,
-            "Start browser authorization"
+            "启动浏览器授权"
         )
         modeButton = +GuiButton(
             BUTTON_MODE,
@@ -172,7 +172,7 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
             moduleToggleButton.yPosition + moduleToggleButton.height + 4,
             (fieldWidth - 4) / 2,
             20,
-            "Open dashboard"
+            "打开仪表盘"
         )
         guideButton = +GuiButton(
             BUTTON_GUIDE,
@@ -180,7 +180,7 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
             dashboardButton.yPosition,
             (fieldWidth - 4) / 2,
             20,
-            "Authorization guide"
+            "授权指南"
         )
 
         playerButton = +GuiButton(
@@ -189,7 +189,7 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
             guideButton.yPosition + guideButton.height + 4,
             fieldWidth,
             20,
-            "Open music browser"
+            "打开音乐浏览器"
         )
 
         backButton = +GuiButton(
@@ -273,9 +273,9 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
             refreshTokenField.text,
         )
         if (updated) {
-            showStatus(BrowserAuthStatus.SUCCESS, "Saved manual credentials successfully.")
+            showStatus(BrowserAuthStatus.SUCCESS, "已保存手动凭证。")
         } else {
-            showStatus(BrowserAuthStatus.ERROR, "Client ID, secret and refresh token are required for manual mode.")
+            showStatus(BrowserAuthStatus.ERROR, "手动模式需要客户端ID、密钥和刷新令牌。")
         }
     }
 
@@ -286,7 +286,7 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
             }
         }
         if (!started) {
-            showStatus(BrowserAuthStatus.ERROR, "Unable to start browser authorization.")
+            showStatus(BrowserAuthStatus.ERROR, "无法启动浏览器授权。")
         }
     }
 
@@ -311,11 +311,11 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
         saveButton.enabled = manualMode
 
         modeButton.displayString = SpotifyModule.authModeLabel()
-        autoReconnectButton.displayString = "Auto reconnect: ${if (SpotifyModule.autoReconnect) "ON" else "OFF"}"
-        pollInfoButton.displayString = "Poll interval: ${SpotifyModule.pollIntervalSeconds}s"
-        moduleToggleButton.displayString = if (SpotifyModule.state) "Disable Spotify module" else "Enable Spotify module"
+        autoReconnectButton.displayString = "自动重连: ${if (SpotifyModule.autoReconnect) "开" else "关"}"
+        pollInfoButton.displayString = "轮询间隔: ${SpotifyModule.pollIntervalSeconds}秒"
+        moduleToggleButton.displayString = if (SpotifyModule.state) "禁用Spotify模块" else "启用Spotify模块"
         browserButton.displayString =
-            "${if (quickSupported) "Link account" else "Authorize"} (${SpotifyModule.authMode.displayName})"
+            "${if (quickSupported) "关联账号" else "授权"} (${SpotifyModule.authMode.displayName})"
     }
 
     override fun drawScreen(mouseX: Int, mouseY: Int, partialTicks: Float) {
@@ -330,14 +330,14 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
     }
 
     private fun drawTitle() {
-        val title = "SpotifyCraft Display"
+        val title = "SpotifyCraft 显示"
         mc.fontRendererObj.drawString(
             title,
             width / 2 - mc.fontRendererObj.getStringWidth(title) / 2,
             15,
             0xFFFFFF
         )
-        val subtitle = "Control Spotify playback from inside FDPClient"
+        val subtitle = "在FDPClient内控制Spotify播放"
         mc.fontRendererObj.drawString(
             subtitle,
             width / 2 - mc.fontRendererObj.getStringWidth(subtitle) / 2,
@@ -364,7 +364,7 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
             drawModalRectWithCustomSizedTexture(coverX, coverY, 0f, 0f, coverSize, coverSize, coverSize.toFloat(), coverSize.toFloat())
         } else {
             drawRect(coverX, coverY, coverX + coverSize, coverY + coverSize, 0x33000000)
-            mc.fontRendererObj.drawString("Cover unavailable", coverX + 6, coverY + coverSize / 2 - 4, 0xFF777777.toInt())
+            mc.fontRendererObj.drawString("封面不可用", coverX + 6, coverY + coverSize / 2 - 4, 0xFF777777.toInt())
         }
 
         val textX = coverX + coverSize + 10
@@ -374,7 +374,7 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
 
         if (!SpotifyModule.state) {
             mc.fontRendererObj.drawSplitString(
-                "Enable the Spotify module to begin syncing playback.",
+                "启用Spotify模块以开始同步播放。",
                 textX,
                 coverY,
                 textWidth,
@@ -398,16 +398,16 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
             val timeText = "${formatDuration(progress)} / ${formatDuration(duration)}"
             mc.fontRendererObj.drawString(timeText, textX, barY + 8, 0xFF9EA3AD.toInt())
 
-            val statusText = if (state.isPlaying) "Playing" else "Paused"
+            val statusText = if (state.isPlaying) "播放中" else "已暂停"
             mc.fontRendererObj.drawString(
-                "Status: $statusText",
+                "状态: $statusText",
                 textX,
                 barY + 20,
                 if (state.isPlaying) 0xFF1DB954.toInt() else 0xFFE0A924.toInt()
             )
         } else {
             mc.fontRendererObj.drawSplitString(
-                "Waiting for Spotify playback data. Start Spotify on any device and keep it playing.",
+                "等待Spotify播放数据。请在任意设备上启动Spotify并保持播放。",
                 textX,
                 coverY,
                 textWidth,
@@ -417,17 +417,17 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
 
         val infoStartY = coverY + coverSize + 16
         val infoLines = mutableListOf(
-            "Connection: ${connectionState.displayName}",
-            "Module state: ${if (SpotifyModule.state) "Enabled" else "Disabled"}",
+            "连接: ${connectionState.displayName}",
+            "模块状态: ${if (SpotifyModule.state) "启用" else "禁用"}",
             SpotifyModule.authModeLabel(),
-            "Auto reconnect: ${if (SpotifyModule.autoReconnect) "ON" else "OFF"}",
-            "Poll interval: ${SpotifyModule.pollIntervalSeconds}s",
+            "自动重连: ${if (SpotifyModule.autoReconnect) "开" else "关"}",
+            "轮询间隔: ${SpotifyModule.pollIntervalSeconds}秒",
         )
         if (connectionState == SpotifyConnectionState.ERROR && !connectionError.isNullOrBlank()) {
-            infoLines += "Last error: ${connectionError!!.take(64)}"
+            infoLines += "上次错误: ${connectionError!!.take(64)}"
         }
         if (SpotifyModule.supportsQuickConnect()) {
-            infoLines += "Quick connect: Available"
+            infoLines += "快速连接: 可用"
         }
 
         var lineY = infoStartY
@@ -446,19 +446,19 @@ class GuiSpotify(private val prevGui: GuiScreen?) : AbstractScreen(), Listenable
 
         val padding = 12
         val textColor = 0xFFEEEEEE.toInt()
-        mc.fontRendererObj.drawString("Account linking", left + padding, top + padding, textColor)
+        mc.fontRendererObj.drawString("账号关联", left + padding, top + padding, textColor)
 
         val manualMode = SpotifyModule.authMode == SpotifyModule.SpotifyAuthMode.MANUAL
         val helperText = if (manualMode) {
-            "Use a Spotify application client ID/secret and refresh token."
+            "使用Spotify应用客户端ID/密钥和刷新令牌。"
         } else {
-            "Quick Connect stores its own credentials. Simply run the browser authorization."
+            "快速连接将存储自身凭证。只需运行浏览器授权即可。"
         }
         mc.fontRendererObj.drawSplitString(helperText, left + padding, top + padding + 12, right - left - padding * 2, 0xFF9EA3AD.toInt())
 
         val disabledColor = 0xFF5A5A5A.toInt()
         val labelColor = if (manualMode) textColor else disabledColor
-        val labels = listOf("Client ID", "Client secret", "Refresh token")
+        val labels = listOf("客户端ID", "客户端密钥", "刷新令牌")
         labels.forEachIndexed { index, label ->
             val labelY = configurationFieldStart + configurationSpacing * index - 12
             mc.fontRendererObj.drawString(label, left + padding, labelY, labelColor)

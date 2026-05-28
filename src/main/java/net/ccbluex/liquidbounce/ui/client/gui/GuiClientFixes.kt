@@ -39,63 +39,62 @@ class GuiClientFixes(private val prevGui: GuiScreen) : AbstractScreen() {
             1,
             width / 2 - 100,
             height / 4 + 35,
-            "AntiForge (" + (if (fmlFixesEnabled) "On" else "Off") + ")"
+            "反Forge (" + (if (fmlFixesEnabled) "开" else "关") + ")"
         )
         fmlButton =
-            +GuiButton(2, width / 2 - 100, height / 4 + 35 + 25, "Block FML (" + (if (blockFML) "On" else "Off") + ")")
+            +GuiButton(2, width / 2 - 100, height / 4 + 35 + 25, "阻止FML (" + (if (blockFML) "开" else "关") + ")")
         proxyButton = +GuiButton(
             3,
             width / 2 - 100,
             height / 4 + 35 + 25 * 2,
-            "Block FML Proxy Packet (" + (if (blockProxyPacket) "On" else "Off") + ")"
+            "阻止FML代理包 (" + (if (blockProxyPacket) "开" else "关") + ")"
         )
         payloadButton = +GuiButton(
             4,
             width / 2 - 100,
             height / 4 + 35 + 25 * 3,
-            "Block Non-MC Payloads (" + (if (blockPayloadPackets) "On" else "Off") + ")"
+            "阻止非MC负载 (" + (if (blockPayloadPackets) "开" else "关") + ")"
         )
-        customBrandButton = +GuiButton(5, width / 2 - 100, height / 4 + 35 + 25 * 4, "Brand (${possibleBrands.get()})")
+        customBrandButton = +GuiButton(5, width / 2 - 100, height / 4 + 35 + 25 * 4, "品牌 (${possibleBrands.get()})")
         resourcePackButton = +GuiButton(
             6,
             width / 2 - 100,
             height / 4 + 50 + 25 * 5,
-            "Block Resource Pack Exploit (" + (if (blockResourcePackExploit) "On" else "Off") + ")"
+            "阻止资源包漏洞 (" + (if (blockResourcePackExploit) "开" else "关") + ")"
         )
-        +GuiButton(0, width / 2 - 100, height / 4 + 55 + 25 * 6 + 5, "Back")
+        +GuiButton(0, width / 2 - 100, height / 4 + 55 + 25 * 6 + 5, "返回")
     }
 
     override fun actionPerformed(button: GuiButton) {
         when (button.id) {
             1 -> {
                 fmlFixesEnabled = !fmlFixesEnabled
-                enabledButton.displayString = "AntiForge (${if (fmlFixesEnabled) "On" else "Off"})"
+                enabledButton.displayString = "反Forge (${if (fmlFixesEnabled) "开" else "关"})"
             }
             2 -> {
                 blockFML = !blockFML
-                fmlButton.displayString = "Block FML (${if (blockFML) "On" else "Off"})"
+                fmlButton.displayString = "阻止FML (${if (blockFML) "开" else "关"})"
             }
             3 -> {
                 blockProxyPacket = !blockProxyPacket
-                proxyButton.displayString = "Block FML Proxy Packet (${if (blockProxyPacket) "On" else "Off"})"
+                proxyButton.displayString = "阻止FML代理包 (${if (blockProxyPacket) "开" else "关"})"
             }
             4 -> {
                 blockPayloadPackets = !blockPayloadPackets
-                payloadButton.displayString = "Block Non-MC Payloads (${if (blockPayloadPackets) "On" else "Off"})"
+                payloadButton.displayString = "阻止非MC负载 (${if (blockPayloadPackets) "开" else "关"})"
             }
             5 -> {
                 val brands = possibleBrands.values
 
-                // Switch to next client brand
                 val currentBrand = possibleBrands.get()
                 val nextBrand = brands[(brands.indexOf(currentBrand) + 1) % brands.size]
                 possibleBrands.set(nextBrand)
 
-                customBrandButton.displayString = "Brand ($nextBrand)"
+                customBrandButton.displayString = "品牌 ($nextBrand)"
             }
             6 -> {
                 blockResourcePackExploit = !blockResourcePackExploit
-                resourcePackButton.displayString = "Block Resource Pack Exploit (${if (blockResourcePackExploit) "On" else "Off"})"
+                resourcePackButton.displayString = "阻止资源包漏洞 (${if (blockResourcePackExploit) "开" else "关"})"
             }
             0 -> mc.displayGuiScreen(prevGui)
         }
@@ -106,7 +105,7 @@ class GuiClientFixes(private val prevGui: GuiScreen) : AbstractScreen() {
         assumeNonVolatile = true
 
         drawBackground(0)
-        Fonts.fontBold180.drawCenteredString("Fixes", width / 2f, height / 8f + 5f, 4673984, true)
+        Fonts.fontBold180.drawCenteredString("修复", width / 2f, height / 8f + 5f, 4673984, true)
 
         drawBloom(mouseX - 5, mouseY - 5, 10, 10, 16, Color(guiColor))
 

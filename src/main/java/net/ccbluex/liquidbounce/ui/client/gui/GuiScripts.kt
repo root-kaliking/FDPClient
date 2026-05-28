@@ -39,13 +39,13 @@ class GuiScripts(private val prevGui: GuiScreen) : AbstractScreen() {
         list.elementClicked(-1, false, 0, 0)
 
         val j = 22
-        +GuiButton(0, width - 80, height - 65, 70, 20, "Back")
-        +GuiButton(1, width - 80, j + 24, 70, 20, "Import")
-        +GuiButton(2, width - 80, j + 24 * 2, 70, 20, "Delete")
-        +GuiButton(3, width - 80, j + 24 * 3, 70, 20, "Reload")
-        +GuiButton(4, width - 80, j + 24 * 4, 70, 20, "Folder")
-        +GuiButton(5, width - 80, j + 24 * 5, 70, 20, "Docs")
-        +GuiButton(6, width - 80, j + 24 * 6, 70, 20, "Find Scripts")
+        +GuiButton(0, width - 80, height - 65, 70, 20, "返回")
+        +GuiButton(1, width - 80, j + 24, 70, 20, "导入")
+        +GuiButton(2, width - 80, j + 24 * 2, 70, 20, "删除")
+        +GuiButton(3, width - 80, j + 24 * 3, 70, 20, "刷新")
+        +GuiButton(4, width - 80, j + 24 * 4, 70, 20, "文件夹")
+        +GuiButton(5, width - 80, j + 24 * 5, 70, 20, "文档")
+        +GuiButton(6, width - 80, j + 24 * 6, 70, 20, "查找脚本")
     }
 
     override fun drawScreen(mouseX: Int, mouseY: Int, partialTicks: Float) {
@@ -87,7 +87,7 @@ class GuiScripts(private val prevGui: GuiScreen) : AbstractScreen() {
                         loadConfigs(clickGuiConfig, hudConfig)
                     }
 
-                    else -> MiscUtils.showMessageDialog("Wrong file extension", "The file extension has to be .js or .zip")
+                    else -> MiscUtils.showMessageDialog("错误的文件扩展名", "文件扩展名必须为 .js 或 .zip")
                 }
             } catch (t: Throwable) {
                 LOGGER.error("Something went wrong while importing a script.", t)

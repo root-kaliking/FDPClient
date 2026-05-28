@@ -32,7 +32,7 @@ class GuiCommitInfo : AbstractScreen() {
         val buttonX = width / 2 - buttonWidth / 2
         val buttonY = height - buttonHeight - 10
 
-        +GuiButton(0, buttonX, buttonY, buttonWidth, buttonHeight, "Back")
+        +GuiButton(0, buttonX, buttonY, buttonWidth, buttonHeight, "返回")
 
         super.initGui()
     }
@@ -50,14 +50,14 @@ class GuiCommitInfo : AbstractScreen() {
         val startY = 30
 
         val lines = listOf(
-            "Git Info",
-            "$CLIENT_NAME built by ${ClientUpdate.gitInfo.getProperty("git.build.user.name")}",
-            "Version: ${ClientUpdate.gitInfo.getProperty("git.build.version")}",
-            "CommitId: ${ClientUpdate.gitInfo.getProperty("git.commit.id")} (${ClientUpdate.gitInfo.getProperty("git.commit.id.abbrev")})",
-            "CommitMessage: ${ClientUpdate.gitInfo.getProperty("git.commit.message.short")}",
-            "Branch: ${ClientUpdate.gitInfo.getProperty("git.branch")}",
-            "Remote origin: ${ClientUpdate.gitInfo.getProperty("git.remote.origin.url")}",
-            "Developers: ${FDPClient.CLIENT_AUTHOR}"
+            "Git信息",
+            "$CLIENT_NAME 构建者: ${ClientUpdate.gitInfo.getProperty("git.build.user.name")}",
+            "版本: ${ClientUpdate.gitInfo.getProperty("git.build.version")}",
+            "提交ID: ${ClientUpdate.gitInfo.getProperty("git.commit.id")} (${ClientUpdate.gitInfo.getProperty("git.commit.id.abbrev")})",
+            "提交信息: ${ClientUpdate.gitInfo.getProperty("git.commit.message.short")}",
+            "分支: ${ClientUpdate.gitInfo.getProperty("git.branch")}",
+            "远程仓库: ${ClientUpdate.gitInfo.getProperty("git.remote.origin.url")}",
+            "开发者: ${FDPClient.CLIENT_AUTHOR}"
         )
 
         lines.forEachIndexed { index, line ->

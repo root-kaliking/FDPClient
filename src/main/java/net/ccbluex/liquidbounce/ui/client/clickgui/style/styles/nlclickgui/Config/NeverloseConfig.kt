@@ -8,5 +8,5 @@ data class NeverloseConfig(
     var isExpanded: Boolean = false
 ) {
     val author: String
-        get() = "Local"
+        get() = "本地"
 }

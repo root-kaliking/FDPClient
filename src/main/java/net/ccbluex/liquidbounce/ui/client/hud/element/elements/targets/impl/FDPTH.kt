@@ -54,7 +54,7 @@ class FDPTH(inst: Targets) : TargetStyle("FDP", inst, true) {
         glScalef(1.5f, 1.5f, 1.5f)
         font.drawString(entity.name, 39, 8, Color.WHITE.rgb)
         glPopMatrix()
-        font.drawString("Health ${getHealth(entity).roundToInt()}", 56, 12 + (font.FONT_HEIGHT * 1.5).toInt(), Color.WHITE.rgb)
+        font.drawString("血量 ${getHealth(entity).roundToInt()}", 56, 12 + (font.FONT_HEIGHT * 1.5).toInt(), Color.WHITE.rgb)
     }
 
     override fun getBorder(entity: EntityLivingBase?): Border {

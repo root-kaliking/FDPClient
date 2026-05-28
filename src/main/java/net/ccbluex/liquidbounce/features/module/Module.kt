@@ -79,9 +79,9 @@ open class Module(
             values.forEach { if (it !== this) it.resetValue() else return@forEach }
         } catch (any: Exception) {
             LOGGER.error("Failed to reset all values", any)
-            chat("Failed to reset all values: ${any.message}")
+            chat("重置所有值失败: ${any.message}")
         } finally {
-            addNotification(Notification("Successfully reset all settings from ${this@Module.name}", "Successfully reset all settings from ${this@Module.name}", Type.SUCCESS, 1000))
+            addNotification(Notification("已成功重置 ${this@Module.name} 的所有设置", "已成功重置 ${this@Module.name} 的所有设置", Type.SUCCESS, 1000))
             saveConfig(valuesConfig)
         }
         return@onChange false
@@ -108,7 +108,7 @@ open class Module(
             if (!isStarting) {
                 mc.playSound("random.click".asResourceLocation())
 
-                addNotification(Notification(name,"${if (value) "Enabled" else "Disabled"} §r$name", if (value) Type.SUCCESS else Type.ERROR, 1000))
+                addNotification(Notification(name,"${if (value) "已启用" else "已禁用"} §r$name", if (value) Type.SUCCESS else Type.ERROR, 1000))
             }
 
             // Call on enabled or disabled

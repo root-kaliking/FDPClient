@@ -76,13 +76,14 @@ object ClickGui : GuiScreen() {
 
         for (category in Category.entries) {
             panels += Panel(
-                category.displayName,
+                category.configName,
                 x = 100,
                 y = yPos,
                 width,
                 height,
                 false,
-                moduleManager[category].map(::ModuleElement)
+                moduleManager[category].map(::ModuleElement),
+                displayName = category.displayName
             )
 
             yPos += 20
@@ -100,15 +101,15 @@ object ClickGui : GuiScreen() {
             ButtonElement(setting.name, { Integer.MAX_VALUE }) {
                 SharedScopes.IO.launch {
                     try {
-                        chat("Loading settings...")
+                        chat("正在加载设置...")
 
                         // Load settings and apply them
                         val settings = ClientApi.getSettingsScript(settingId = setting.settingId)
 
-                        chat("Applying settings...")
+                        chat("正在应用设置...")
                         SettingsUtils.applyScript(settings)
 
-                        chat("§6Settings applied successfully.")
+                        chat("§6设置应用成功。")
                         HUD.addNotification(Notification("Updated Settings", "!!!", Type.INFO, 60))
                         mc.playSound("random.anvil_use".asResourceLocation())
                     } catch (e: Exception) {
@@ -118,11 +119,11 @@ object ClickGui : GuiScreen() {
                 }
             }.apply {
                 this.hoverText = buildString {
-                    appendLine("§7Description: §e${setting.description.ifBlank { "No description available" }}")
-                    appendLine("§7Type: §e${setting.type.displayName}")
-                    appendLine("§7Contributors: §e${setting.contributors}")
-                    appendLine("§7Last updated: §e${setting.date}")
-                    append("§7Status: §e${setting.statusType.displayName} §a(${setting.statusDate})")
+                    appendLine("§7描述: §e${setting.description.ifBlank { "无描述" }}")
+                    appendLine("§7类型: §e${setting.type.displayName}")
+                    appendLine("§7贡献者: §e${setting.contributors}")
+                    appendLine("§7最后更新: §e${setting.date}")
+                    append("§7状态: §e${setting.statusType.displayName} §a(${setting.statusDate})")
                 }
             }
         } ?: run {
@@ -136,7 +137,7 @@ object ClickGui : GuiScreen() {
             emptyList()
         }
 
-        return Panel("Auto Settings", xPos, yPos, width, height, false, list)
+        return Panel("AutoSettings", xPos, yPos, width, height, false, list, displayName = "自动设置")
     }
 
     override fun drawScreen(x: Int, y: Int, partialTicks: Float) {

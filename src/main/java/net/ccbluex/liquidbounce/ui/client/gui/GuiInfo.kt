@@ -26,13 +26,13 @@ class GuiInfo(private val prevGui: GuiScreen) : AbstractScreen() {
         val buttonHeight = 20
 
         val buttons = listOf(
-            +GuiButton(1, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 0, "Open Website"),
-            +GuiButton(2, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 1 + 10, "Join Discord Server"),
-            +GuiButton(3, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 2 + 20, "Server Status"),
-            +GuiButton(4, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 3 + 30, "Scripts"),
-            +GuiButton(5, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 4 + 40, "Client Configuration"),
-            +GuiButton(6, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 5 + 50, "Donate Now"),
-            +GuiButton(7, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 6 + 60, "Done")
+            +GuiButton(1, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 0, "打开网站"),
+            +GuiButton(2, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 1 + 10, "加入Discord服务器"),
+            +GuiButton(3, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 2 + 20, "服务器状态"),
+            +GuiButton(4, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 3 + 30, "脚本"),
+            +GuiButton(5, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 4 + 40, "客户端配置"),
+            +GuiButton(6, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 5 + 50, "捐赠支持"),
+            +GuiButton(7, width / 2 - buttonWidth / 2, yOffset + buttonHeight * 6 + 60, "完成")
         )
 
         buttonList.addAll(buttons)

@@ -107,22 +107,22 @@ class GuiMainMenu : AbstractScreen(), GuiYesNoCallback {
         val buttonWidth = 133
         val buttonHeight = 20
 
-        btnSinglePlayer = +GuiButton(0, width / 2 - 66, centerY + 70, buttonWidth, buttonHeight, "SINGLE PLAYER")
-        btnMultiplayer = +GuiButton(1, width / 2 - 66, centerY + 93, buttonWidth, buttonHeight, "MULTI PLAYER")
-        btnClientOptions = +GuiButton(2, width / 2 - 66, centerY + 116, buttonWidth, buttonHeight, "SETTINGS")
-        btnFontManager = +GuiButton(3, width / 2 - 66, centerY + 139, buttonWidth, buttonHeight, "FONT MANAGER")
-        btnCheckUpdate = GuiButton(4, width / 2 - 66, centerY + 162, buttonWidth, buttonHeight, "§aCHECK UPDATE")
+        btnSinglePlayer = +GuiButton(0, width / 2 - 66, centerY + 70, buttonWidth, buttonHeight, "单机游戏")
+        btnMultiplayer = +GuiButton(1, width / 2 - 66, centerY + 93, buttonWidth, buttonHeight, "多人游戏")
+        btnClientOptions = +GuiButton(2, width / 2 - 66, centerY + 116, buttonWidth, buttonHeight, "设置")
+        btnFontManager = +GuiButton(3, width / 2 - 66, centerY + 139, buttonWidth, buttonHeight, "字体管理")
+        btnCheckUpdate = GuiButton(4, width / 2 - 66, centerY + 162, buttonWidth, buttonHeight, "§a检查更新")
 
         buttonList.addAll(listOf(btnSinglePlayer, btnMultiplayer, btnClientOptions, btnFontManager, btnCheckUpdate))
 
         val bottomY = height - 20
-        btnClickGUI = ImageButton("CLICKGUI", ResourceLocation("${basePath}clickgui.png"), width / 2 - 45, bottomY)
-        btnCommitInfo = ImageButton("COMMIT INFO", ResourceLocation("${basePath}github.png"), width / 2 - 30, bottomY)
-        btnCosmetics = ImageButton("COSMETICS", ResourceLocation("${basePath}cosmetics.png"), width / 2 - 15, bottomY)
-        btnMinecraftOptions = ImageButton("MINECRAFT SETTINGS", ResourceLocation("${basePath}cog.png"), width / 2, bottomY)
-        btnLanguage = ImageButton("LANGUAGE", ResourceLocation("${basePath}globe.png"), width / 2 + 15, bottomY)
-        btnForgeModList = ImageButton("FORGE MODS", ResourceLocation("${basePath}forge.png"), width / 2 + 30, bottomY)
-        btnAddAccount = ImageButton("ALT MANAGER", ResourceLocation("${basePath}add-account.png"), width - 55, 7)
+        btnClickGUI = ImageButton("功能界面", ResourceLocation("${basePath}clickgui.png"), width / 2 - 45, bottomY)
+        btnCommitInfo = ImageButton("提交信息", ResourceLocation("${basePath}github.png"), width / 2 - 30, bottomY)
+        btnCosmetics = ImageButton("装饰", ResourceLocation("${basePath}cosmetics.png"), width / 2 - 15, bottomY)
+        btnMinecraftOptions = ImageButton("Minecraft设置", ResourceLocation("${basePath}cog.png"), width / 2, bottomY)
+        btnLanguage = ImageButton("语言", ResourceLocation("${basePath}globe.png"), width / 2 + 15, bottomY)
+        btnForgeModList = ImageButton("Forge模组", ResourceLocation("${basePath}forge.png"), width / 2 + 30, bottomY)
+        btnAddAccount = ImageButton("帐号管理", ResourceLocation("${basePath}add-account.png"), width - 55, 7)
         btnQuit = QuitButton(width - 17, 7)
     }
 
@@ -197,21 +197,21 @@ class GuiMainMenu : AbstractScreen(), GuiYesNoCallback {
         mc.textureManager.bindTexture(logo)
 
         drawModalRectWithCustomSizedTexture(width / 2 - 25, height / 2 - 68, 0f, 0f, 49, 49, 49f, 49f)
-        val apiMessage = if (canConnect) "§eOK" else "§cNo"
-        val apiTextX = width - 10f - minecraftFont.getStringWidth("API Connection: $apiMessage")
-        minecraftFont.drawStringWithShadow("API Connection: $apiMessage", apiTextX, 32f, Color(255, 255, 255, 140).rgb)
+        val apiMessage = if (canConnect) "§e正常" else "§c异常"
+        val apiTextX = width - 10f - minecraftFont.getStringWidth("API连接: $apiMessage")
+        minecraftFont.drawStringWithShadow("API连接: $apiMessage", apiTextX, 32f, Color(255, 255, 255, 140).rgb)
         val clientNameX = width - 4f - minecraftFont.getStringWidth(CLIENT_NAME)
         minecraftFont.drawStringWithShadow(CLIENT_NAME, clientNameX, height - 23f, Color(255, 255, 255, 140).rgb)
         val uiMessage = when {
-            canConnect && isLatest -> " §e(Latest)"
-            !canConnect && isLatest -> " §c(API Dead)"
-            else -> " §c(Outdated)"
+            canConnect && isLatest -> " §e(最新)"
+            !canConnect && isLatest -> " §c(API已失效)"
+            else -> " §c(已过时)"
         }
-        val buildInfoText = "Your current build is $clientVersionText$uiMessage"
+        val buildInfoText = "当前版本为 $clientVersionText$uiMessage"
         val buildInfoX = width - 4f - minecraftFont.getStringWidth(buildInfoText)
         minecraftFont.drawStringWithShadow(buildInfoText, buildInfoX, height - 12f, Color(255, 255, 255, 140).rgb)
 
-        minecraftFont.drawStringWithShadow("Changelogs:", 3f, 32f, Color(255, 255, 255, 150).rgb)
+        minecraftFont.drawStringWithShadow("更新日志:", 3f, 32f, Color(255, 255, 255, 150).rgb)
 
         var changeY = 48
         val changeDetails = changelogs.split("\n")
@@ -222,7 +222,7 @@ class GuiMainMenu : AbstractScreen(), GuiYesNoCallback {
             changeY += 8
         }
 
-        val bugsFixedText = "Bugs Fixed:"
+        val bugsFixedText = "已修复错误:"
         val bugsLabelX = width - 10f - minecraftFont.getStringWidth(bugsFixedText)
         minecraftFont.drawStringWithShadow(bugsFixedText, bugsLabelX, 43f, Color(255, 255, 255, 140).rgb)
 
@@ -275,28 +275,28 @@ class GuiMainMenu : AbstractScreen(), GuiYesNoCallback {
 
     private fun showWelcomePopup() {
         popup = PopupScreen {
-            title("§a§lWelcome!")
+            title("§a§l欢迎!")
             message(
                 """
-                §eThank you for downloading and installing §b$CLIENT_NAME§e!
+                §e感谢您下载并安装 §b$CLIENT_NAME§e!
         
-                §6Here is some useful information:
-                §a- ClickGUI: Press §7[RightShift]§f to open ClickGUI.
-                §a- Right-click modules with a '+' to edit.
-                §a- Hover over a module to see its description.
+                §6以下是一些有用的信息:
+                §a- 功能界面: 按下 §7[右Shift]§f 打开功能界面。
+                §a- 右键点击带'+'的模块以进行编辑。
+                §a- 将鼠标悬停在模块上可查看其说明。
         
-                §6Important Commands:
-                §a- .bind <module> <key> / .bind <module> none
-                §a- .config load <name> / .config list
+                §6重要命令:
+                §a- .bind <模块> <按键> / .bind <模块> none
+                §a- .config load <名称> / .config list
         
-                §bNeed help? Contact us!
-                - §fCreator: §9https://github.com/opZywl
+                §b需要帮助？联系我们！
+                - §f作者: §9https://github.com/opZywl
                 - §fDiscord: §9https://discord.gg/WV6qPzyqTx
                 - §fGithub: §9https://github.com/SkidderMC/FDPClient
                 - §fYouTube: §9https://www.youtube.com/@opZywl
                 """.trimIndent()
             )
-            button("§aOK")
+            button("§a确定")
             onClose { popup = null }
         }
     }
@@ -320,63 +320,63 @@ class GuiMainMenu : AbstractScreen(), GuiYesNoCallback {
     }
 
     private fun showUpdatePopup(githubRelease: GithubRelease) {
-        val updateType = if (!githubRelease.prerelease) "version" else "beta release"
-        val dateFormatter = SimpleDateFormat("EEEE, MMMM dd, yyyy, h a z", Locale.ENGLISH)
+        val updateType = if (!githubRelease.prerelease) "版本" else "测试版"
+        val dateFormatter = SimpleDateFormat("yyyy年MM月dd日 EEEE h a z", Locale.CHINESE)
         val inputFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH)
         inputFormatter.timeZone = TimeZone.getTimeZone("UTC")
         val publishedDate = inputFormatter.parse(githubRelease.publishedAt)
         val formattedDate = dateFormatter.format(publishedDate)
 
         popup = PopupScreen {
-            title("§bNew Update Available!")
+            title("§b新版本可用!")
             message(
                 """
-                §eA new $updateType of $CLIENT_NAME is available!
+                §e$CLIENT_NAME 有一个新的${updateType}可用！
         
-                - §aVersion:§r ${githubRelease.tagName}
-                - §aPublished:§r $formattedDate
+                - §a版本:§r ${githubRelease.tagName}
+                - §a发布日期:§r $formattedDate
         
-                §6Changes:§r
+                §6更新内容:§r
                 ${githubRelease.body}
         
-                §bUpgrade now to enjoy the latest features and improvements!§r
+                §b立即升级以享受最新功能和改进！§r
                 """.trimIndent()
             )
-            button("§aDownload") { MiscUtils.showURL(githubRelease.htmlUrl) }
+            button("§a下载") { MiscUtils.showURL(githubRelease.htmlUrl) }
             onClose { popup = null }
         }
     }
 
     private fun showOutdatedJava8Warning() {
         popup = PopupScreen {
-            title("§c§lOutdated Java Runtime Environment")
+            title("§c§lJava运行环境版本过旧")
             message(
                 """
-                §6§lYou are using an outdated version of Java 8 (${javaVersion!!.raw}).
+                §6§l您正在使用一个过时的Java 8版本 (${javaVersion?.raw ?: "未知"})。
                 
-                §fThis may cause unexpected §c§lBUGS§f.
-                Please update to 8u101+ or download a new version from the Internet.
+                §f这可能会导致意外的 §c§l错误§f。
+                请更新到8u101以上版本，或从网上重新下载新版本。
                 """.trimIndent()
             )
-            button("§aDownload Java") { MiscUtils.showURL(JavaVersion.DOWNLOAD_PAGE) }
-            button("§eI understand")
+            button("§a下载Java") { MiscUtils.showURL(JavaVersion.DOWNLOAD_PAGE) }
+            button("§e我已知晓")
             onClose { popup = null }
         }
     }
 
     private fun showJava11Warning() {
         popup = PopupScreen {
-            title("§c§lInappropriate Java Runtime Environment")
+            title("§c§l不兼容的Java运行环境")
             message(
                 """
-                §6§lThis version of $CLIENT_NAME is designed for a Java 8 environment.
+                §6§l此版本的 $CLIENT_NAME 是为Java 8环境设计的。
                 
-                §fHigher versions of Java may cause bugs or crashes.
-                Consider installing JRE 8.
+                §f更高版本的Java可能导致错误或崩溃。
+                建议安装JRE 8。
                 """.trimIndent()
             )
-            button("§aDownload Java") { MiscUtils.showURL(JavaVersion.DOWNLOAD_PAGE) }
-            button("§eI understand")
+            button("§a下载Java") { MiscUtils.showURL(JavaVersion.DOWNLOAD_PAGE) }
+            button("§e我已知晓")
             onClose { popup = null }
         }
     }
@@ -384,14 +384,14 @@ class GuiMainMenu : AbstractScreen(), GuiYesNoCallback {
     private fun checkOutdatedVersionPopup() {
         if (!isLatest && canConnect) {
             popup = PopupScreen {
-                title("§bNew Update Available!")
+                title("§b新版本可用!")
                 message(
                     """
-                    §eYou are using an outdated version of $CLIENT_NAME.
-                    Please update to the latest version to enjoy new features and improvements.
+                    §e您正在使用 $CLIENT_NAME 的旧版本。
+                    请更新到最新版本以获得新功能和改进。
                     """.trimIndent()
                 )
-                button("§aDownload Update") { MiscUtils.showURL("https://github.com/SkidderMC/FDPClient/releases/latest") }
+                button("§a下载更新") { MiscUtils.showURL("https://github.com/SkidderMC/FDPClient/releases/latest") }
                 onClose { popup = null }
             }
         }

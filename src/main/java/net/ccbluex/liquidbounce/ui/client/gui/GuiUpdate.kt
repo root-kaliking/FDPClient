@@ -33,16 +33,16 @@ class GuiUpdate : AbstractScreen() {
     private var loadProgress = 0
     private var errorMessage: String? = null
 
-    private var latestReleaseText: String = "Last Oficial release: loading..."
-    private var lastCommitText: String = "Last Beta: loading..."
+    private var latestReleaseText: String = "最新正式版: 加载中..."
+    private var lastCommitText: String = "最新测试版: 加载中..."
 
     override fun initGui() {
         val j = height / 4 + 24
 
-        +GuiButton(1, width / 2 + 2, j + 24 * 2, 98, 20, "Ignore")
-        +GuiButton(2, width / 2 - 100, j + 24 * 2, 98, 20, "Go to download page")
-        +GuiButton(3, width / 2 - 49, j + 24 * 3, 98, 20, "Reload API")
-        +GuiButton(4, width / 2 - 49, j + 24 * 4, 98, 20, "Join Discord")
+        +GuiButton(1, width / 2 + 2, j + 24 * 2, 98, 20, "忽略")
+        +GuiButton(2, width / 2 - 100, j + 24 * 2, 98, 20, "前往下载页面")
+        +GuiButton(3, width / 2 - 49, j + 24 * 3, 98, 20, "刷新API")
+        +GuiButton(4, width / 2 - 49, j + 24 * 4, 98, 20, "加入Discord")
 
         loadGitMeta()
     }
@@ -53,7 +53,7 @@ class GuiUpdate : AbstractScreen() {
         val messageYPosition = (height / 8f + 60).toInt()
         val titleYPosition = (height / 16f + 10).toInt()
 
-        val mainMessage = "New build available!"
+        val mainMessage = "新版本可用！"
         val mainMessageWidth = Fonts.minecraftFont.getStringWidth(mainMessage)
         Fonts.minecraftFont.drawStringWithShadow(
             mainMessage,
@@ -62,7 +62,7 @@ class GuiUpdate : AbstractScreen() {
             0xffffff
         )
 
-        val subMessage = "Press \"Download\" to visit our website or dismiss this message by pressing \"OK\"."
+        val subMessage = "点击\"下载\"访问我们的网站，或点击\"忽略\"关闭此消息。"
         val subMessageWidth = Fonts.minecraftFont.getStringWidth(subMessage)
         Fonts.minecraftFont.drawStringWithShadow(
             subMessage,
@@ -91,9 +91,9 @@ class GuiUpdate : AbstractScreen() {
 
         glPushMatrix()
         glScalef(2F, 2F, 2F)
-        val titleWidth = Fonts.minecraftFont.getStringWidth("New update available!") / 2
+        val titleWidth = Fonts.minecraftFont.getStringWidth("新更新可用！") / 2
         Fonts.minecraftFont.drawStringWithShadow(
-            "New update available!",
+            "新更新可用！",
             (width / 4f) - titleWidth,
             titleYPosition / 2f,
             Color(255, 0, 0).rgb
@@ -153,7 +153,7 @@ class GuiUpdate : AbstractScreen() {
                     try {
                         performAllChecksAsync()
                     } catch (e: Exception) {
-                        errorMessage = "Failed to reload API: ${e.message}"
+                        errorMessage = "刷新API失败: ${e.message}"
                     } finally {
                         isLoading = false
                         loadProgress = 100
@@ -177,7 +177,7 @@ class GuiUpdate : AbstractScreen() {
         val rawTime = ClientUpdate.gitInfo.getProperty("git.commit.time")
             ?: ClientUpdate.gitInfo.getProperty("git.build.time")
         val prettyDate = formatGitDate(rawTime)
-        lastCommitText = "Last commit: $prettyDate ($abbrev)"
+        lastCommitText = "最后提交: $prettyDate ($abbrev)"
 
         screenScope.launch(Dispatchers.IO) {
             val rel: GithubRelease? = try {
@@ -187,9 +187,9 @@ class GuiUpdate : AbstractScreen() {
 
             withContext(Dispatchers.Main) {
                 latestReleaseText = if (rel != null) {
-                    "Last Oficial release: ${rel.tagName}"
+                    "最新正式版: ${rel.tagName}"
                 } else {
-                    "Last Oficial release: unavailable"
+                    "最新正式版: 不可用"
                 }
             }
         }

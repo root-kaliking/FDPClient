@@ -127,10 +127,10 @@ class DropdownCategory(private val category: Category) : Screen {
             0F
         )
 
-        Fonts.InterBold_26.drawString(
-            category.name,
-            x + 5,
-            y + Fonts.InterBold_26.getMiddleOfBox(categoryRectHeight),
+        Fonts.minecraftFont.drawString(
+            category.displayName,
+            (x + 5).toInt(),
+            (y + categoryRectHeight / 2f - Fonts.minecraftFont.FONT_HEIGHT / 2f).toInt(),
             textColor
         )
 

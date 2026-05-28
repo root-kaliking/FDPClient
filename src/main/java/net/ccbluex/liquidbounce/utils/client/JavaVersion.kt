@@ -22,7 +22,7 @@ data class JavaVersion(
 val javaVersion by lazy {
     val javaVersion = System.getProperty("java.version")
 
-    val regex = Regex("""(\d+)(?:\.(\d+))?(?:\.(\d+))?_?(\d+)?""")
+    val regex = Regex("""(\d+)(?:\.(\d+))?(?:\.(\d+))?_?(\d+)?(?:.*)?""")
 
     try {
         val matchResult = regex.matchEntire(javaVersion)!! // NPE

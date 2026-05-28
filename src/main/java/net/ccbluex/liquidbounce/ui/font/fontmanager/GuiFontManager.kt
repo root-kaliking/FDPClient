@@ -33,9 +33,9 @@ private const val EDIT_BTN_ID = 12
 class GuiFontManager(private val prevGui: GuiScreen) : AbstractScreen() {
 
     private enum class Status(val text: String) {
-        IDLE("§7Idle..."),
-        FAILED_TO_LOAD("§cFailed to load font file!"),
-        FAILED_TO_REMOVE("§cFailed to remove font info!")
+        IDLE("§7空闲中..."),
+        FAILED_TO_LOAD("§c加载字体文件失败！"),
+        FAILED_TO_REMOVE("§c移除字体信息失败！")
     }
 
     private var status = Status.IDLE

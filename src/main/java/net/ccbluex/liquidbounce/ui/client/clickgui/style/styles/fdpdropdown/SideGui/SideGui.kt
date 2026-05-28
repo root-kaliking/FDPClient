@@ -26,6 +26,7 @@ import net.ccbluex.liquidbounce.ui.client.clickgui.style.styles.fdpdropdown.util
 import net.ccbluex.liquidbounce.utils.render.RenderUtils
 import net.ccbluex.liquidbounce.ui.font.AWTFontRenderer.Companion.assumeNonVolatile
 import net.ccbluex.liquidbounce.ui.font.Fonts
+import net.ccbluex.liquidbounce.ui.font.drawCenteredString
 import net.ccbluex.liquidbounce.utils.client.ClientThemesUtils
 import net.ccbluex.liquidbounce.utils.client.ClientThemesUtils.ClientColorMode
 import net.ccbluex.liquidbounce.utils.client.MinecraftInstance
@@ -45,7 +46,7 @@ import kotlin.math.min
 
 class SideGui : GuiPanel() {
 
-    private val categories = arrayOf("UI", "Configs", "Color", "Background")
+    private val categories = arrayOf("界面", "配置", "颜色", "背景")
 
     var focused = false
     private var clickAnimation: Animation? = null
@@ -55,7 +56,7 @@ class SideGui : GuiPanel() {
     private var categoryAnimation = HashMap<String, Array<Animation>>()
     private var drag: Drag? = null
 
-    private var currentCategory = "UI"
+    private var currentCategory = "界面"
     private var scroll = 0f
     private var animScroll = 0f
 
@@ -166,10 +167,10 @@ class SideGui : GuiPanel() {
 
         // Category content
         when (currentCategory) {
-            "UI" -> drawUiCategory(alpha)
-            "Configs" -> SideGuiConfigsManager.drawConfigsCategory(mouseX, mouseY, alpha, drag!!, rectWidth)
-            "Color" -> SideGuiColorManager.drawColorCategory(mouseX, mouseY, alpha, drag!!, animScroll, rectHeight, smooth)
-            "Background" -> SideGuiBackgroundManager.drawBackgroundCategory(mouseX, mouseY, alpha, drag!!, animScroll, rectHeight)
+            "界面" -> drawUiCategory(alpha)
+            "配置" -> SideGuiConfigsManager.drawConfigsCategory(mouseX, mouseY, alpha, drag!!, rectWidth)
+            "颜色" -> SideGuiColorManager.drawColorCategory(mouseX, mouseY, alpha, drag!!, animScroll, rectHeight, smooth)
+            "背景" -> SideGuiBackgroundManager.drawBackgroundCategory(mouseX, mouseY, alpha, drag!!, animScroll, rectHeight)
         }
 
         drawOverlays(sr, alpha, mouseX, mouseY)
@@ -197,14 +198,14 @@ class SideGui : GuiPanel() {
         colorHexFocused = false
         bgHexFocused = false
 
-        if (currentCategory == "Color") {
+        if (currentCategory == "颜色") {
             checkColorCategoryInteractions(mouseX, mouseY, drag!!)
             val (hexX, hexY, hexW, hexH) = getColorHexFieldArea(drag!!)
             if (RenderUtils.isHovering(hexX, hexY, hexW, hexH, mouseX, mouseY)) {
                 colorHexFocused = true
             }
         }
-        if (currentCategory == "Background") {
+        if (currentCategory == "背景") {
             checkBackgroundInteractions(mouseX, mouseY)
             val (hexX, hexY, hexW, hexH) = getBgHexFieldArea(drag!!)
             if (RenderUtils.isHovering(hexX, hexY, hexW, hexH, mouseX, mouseY)) {
@@ -235,7 +236,7 @@ class SideGui : GuiPanel() {
     }
 
     private fun drawUiCategory(alpha: Int) {
-        Fonts.InterBold_26.drawString("Not Finished - Coming Soon", drag!!.x + rectWidth / 2, drag!!.y + rectHeight / 2, RenderUtils.applyOpacity(-1, alpha / 255f))
+        Fonts.minecraftFont.drawCenteredString("开发中 - 敬请期待", drag!!.x + rectWidth / 2, drag!!.y + rectHeight / 2, RenderUtils.applyOpacity(-1, alpha / 255f), false)
     }
 
     private fun handleMouseWheel() {
@@ -292,7 +293,9 @@ class SideGui : GuiPanel() {
         var xOffset = 0f
         categories.forEachIndexed { index, cat ->
             val xVal = startX + xOffset
-            val hovered = RenderUtils.isHovering(xVal - 30, yVal - 5, 60f, (Fonts.InterBold_26.height + 10).toFloat(), mouseX, mouseY)
+            val tabWidth = 60f
+            val tabHeight = (Fonts.minecraftFont.FONT_HEIGHT + 10).toFloat()
+            val hovered = RenderUtils.isHovering(xVal - tabWidth / 2f, yVal - 5, tabWidth, tabHeight, mouseX, mouseY)
             val catHoverAnim = categoryAnimation[cat]?.get(0)
             val catEnableAnim = categoryAnimation[cat]?.get(1)
             catHoverAnim?.direction = if (hovered) Direction.FORWARDS else Direction.BACKWARDS
@@ -304,9 +307,9 @@ class SideGui : GuiPanel() {
             val enableOut = catEnableAnim?.output?.toFloat() ?: 0f
             val hoverColor: Color = RenderUtils.interpolateColorC(baseColor, RenderUtils.brighter(baseColor, 0.8f), hoverOut)
             val finalColor: Color = RenderUtils.interpolateColorC(hoverColor, colorToInterpolateAsColor, enableOut)
-            drawCustomShapeWithRadius(xVal - 30, yVal - 5, 60f, (Fonts.InterBold_26.height + 10).toFloat(), 6f, finalColor)
-            Fonts.InterBold_26.drawCenteredString(cat, xVal, yVal, textColor)
-            xOffset += 60f + 10f
+            drawCustomShapeWithRadius(xVal - tabWidth / 2f, yVal - 5, tabWidth, tabHeight, 6f, finalColor)
+            Fonts.minecraftFont.drawCenteredString(cat, xVal, yVal, textColor)
+            xOffset += tabWidth + 10f
         }
     }
 
@@ -321,10 +324,11 @@ class SideGui : GuiPanel() {
         val totalWidth = 4 * 60f + 3 * 10f
         val startX = drag!!.x + rectWidth / 2f - totalWidth / 2f
         val yVal = drag!!.y + 15
+        val tabHeight = (Fonts.minecraftFont.FONT_HEIGHT + 10).toFloat()
         var xOffset = 0f
         categories.forEach { cat ->
             val xVal = startX + xOffset
-            val hovered = RenderUtils.isHovering(xVal - 30, yVal - 5, 60f, (Fonts.InterBold_26.height + 10).toFloat(), mouseX, mouseY)
+            val hovered = RenderUtils.isHovering(xVal - 30, yVal - 5, 60f, tabHeight, mouseX, mouseY)
             if (hovered) {
                 currentCategory = cat
                 return
@@ -340,10 +344,11 @@ class SideGui : GuiPanel() {
         val totalWidth = 4 * 60f + 3 * 10f
         val startX = drag!!.x + rectWidth / 2f - totalWidth / 2f
         val yVal = drag!!.y + 15
+        val tabHeight = (Fonts.minecraftFont.FONT_HEIGHT + 10).toFloat()
         var xOffset = 0f
         categories.forEach { _ ->
             val xVal = startX + xOffset
-            val hovered = RenderUtils.isHovering(xVal - 30, yVal - 5, 60f, (Fonts.InterBold_26.height + 10).toFloat(), mouseX, mouseY)
+            val hovered = RenderUtils.isHovering(xVal - 30, yVal - 5, 60f, tabHeight, mouseX, mouseY)
             if (hovered) return true
             xOffset += 60f + 10f
         }

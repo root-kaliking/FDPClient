@@ -59,7 +59,7 @@ class Configs {
         val openFolderWidth = buttonToggleWidth * 2
 
         drawButton(baseX, baseY, openFolderWidth, buttonHeight, mx, my, NeverloseGui.getInstance().light, false)
-        Fonts.InterBold_26.drawString("OPEN FOLDER", (baseX + 10).toFloat(), (baseY + 5).toFloat(), applyTextColor(alpha, false))
+        Fonts.minecraftFont.drawString("打开文件夹", baseX + 5, baseY + 4, applyTextColor(alpha, false))
         interactiveAreas.add(ButtonArea(baseX.toFloat(), baseY.toFloat(), openFolderWidth.toFloat(), buttonHeight.toFloat()) {
             openFolder()
         })
@@ -68,7 +68,7 @@ class Configs {
 
         val onlineActive = !showLocalConfigs
         drawToggle(baseX, togglesY, buttonToggleWidth, buttonHeight, mx, my, onlineActive)
-        Fonts.InterBold_26.drawString("ONLINE", (baseX + 10).toFloat(), (togglesY + 5).toFloat(), applyTextColor(alpha, onlineActive))
+        Fonts.minecraftFont.drawString("在线", baseX + 20, togglesY + 4, applyTextColor(alpha, onlineActive))
         interactiveAreas.add(ButtonArea(baseX.toFloat(), togglesY.toFloat(), buttonToggleWidth.toFloat(), buttonHeight.toFloat()) {
             showLocalConfigs = false
             if (onlineConfigsCache == null) {
@@ -80,7 +80,7 @@ class Configs {
 
         val localActive = showLocalConfigs
         drawToggle(localX, togglesY, buttonToggleWidth, buttonHeight, mx, my, localActive)
-        Fonts.InterBold_26.drawString("LOCAL", (localX + 10).toFloat(), (togglesY + 5).toFloat(), applyTextColor(alpha, localActive))
+        Fonts.minecraftFont.drawString("本地", localX + 20, togglesY + 4, applyTextColor(alpha, localActive))
         interactiveAreas.add(ButtonArea(localX.toFloat(), togglesY.toFloat(), buttonToggleWidth.toFloat(), buttonHeight.toFloat()) {
             showLocalConfigs = true
         })
@@ -177,11 +177,11 @@ class Configs {
                     }
                 }
             } else {
-                Fonts.InterBold_26.drawString("No local configurations available.", configX, configY, standardTextColor)
+                Fonts.minecraftFont.drawString("没有可用的本地配置。", configX.toInt(), (configY + 4).toInt(), standardTextColor)
             }
         } else {
             if (isLoadingOnline) {
-                Fonts.InterBold_26.drawString("Loading online configs...", configX, configY, standardTextColor)
+                Fonts.minecraftFont.drawString("正在加载在线配置...", configX.toInt(), (configY + 4).toInt(), standardTextColor)
                 return
             }
 
@@ -206,7 +206,7 @@ class Configs {
                     }
                 }
             } else {
-                Fonts.InterBold_26.drawString("No online configurations or failed to load.", configX, configY, standardTextColor)
+                Fonts.minecraftFont.drawString("没有在线配置或加载失败。", configX.toInt(), (configY + 4).toInt(), standardTextColor)
             }
         }
     }
@@ -239,24 +239,24 @@ class Configs {
     private fun loadLocalConfig(file: File) {
         val configName = SettingsFiles.localScriptName(file)
         try {
-            ClientUtils.displayChatMessage("Loading local configuration: $configName...")
+            ClientUtils.displayChatMessage("正在加载本地配置: $configName...")
             val localConfigContent = String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8)
             SettingsUtils.applyScript(localConfigContent)
-            ClientUtils.displayChatMessage("Local configuration $configName loaded successfully!")
+            ClientUtils.displayChatMessage("本地配置 $configName 加载成功!")
         } catch (e: IOException) {
-            ClientUtils.displayChatMessage("Error loading local configuration: ${e.message}")
+            ClientUtils.displayChatMessage("加载本地配置失败: ${e.message}")
         }
     }
 
     private fun loadOnlineConfig(settingId: String, configName: String) {
         Thread {
             try {
-                ClientUtils.displayChatMessage("Downloading configuration: $configName...")
+                ClientUtils.displayChatMessage("正在下载配置: $configName...")
                 val configScript = ClientApi.getSettingsScript("legacy", settingId)
                 SettingsUtils.applyScript(configScript)
-                ClientUtils.displayChatMessage("Configuration $configName loaded successfully!")
+                ClientUtils.displayChatMessage("配置 $configName 加载成功!")
             } catch (e: Exception) {
-                ClientUtils.displayChatMessage("Error loading configuration: ${e.message}")
+                ClientUtils.displayChatMessage("加载配置失败: ${e.message}")
             }
         }.start()
     }
@@ -284,9 +284,9 @@ class Configs {
     private fun openFolder() {
         try {
             Desktop.getDesktop().open(FDPClient.fileManager.settingsDir)
-            ClientUtils.displayChatMessage("Opening configuration folder...")
+            ClientUtils.displayChatMessage("正在打开配置文件夹...")
         } catch (e: IOException) {
-            ClientUtils.displayChatMessage("Error opening folder: ${e.message}")
+            ClientUtils.displayChatMessage("打开文件夹失败: ${e.message}")
         }
     }
 

@@ -90,7 +90,7 @@ object SideGuiBackgroundManager {
         val fraction = (bgAlpha - 1f) / (255f - 1f)
         val fill = sliderW * fraction
         RenderUtils.drawRect2(sliderX.toDouble(), sliderY.toDouble(), fill.toDouble(), sliderH.toDouble(), Color(100, 150, 100, alpha).rgb)
-        Fonts.InterBold_26.drawString("BG Alpha: ${bgAlpha.toInt()}", sliderX + 2, sliderY - 12, RenderUtils.applyOpacity(-1, alpha / 255f))
+        Fonts.minecraftFont.drawString("背景透明度: ${bgAlpha.toInt()}", (sliderX + 2).toInt(), (sliderY - 12).toInt(), RenderUtils.applyOpacity(-1, alpha / 255f))
         val hovered = RenderUtils.isHovering(sliderX, sliderY, sliderW, sliderH, mouseX, mouseY)
         if (hovered && Mouse.isButtonDown(0)) {
             bgAlpha = max(1f, min(255f, ((mouseX - sliderX) / sliderW) * (255f - 1f) + 1f))
@@ -99,7 +99,7 @@ object SideGuiBackgroundManager {
     fun drawBackgroundHexField(alpha: Int, drag: Drag) {
         val quad = getBgHexFieldArea(drag)
         RenderUtils.drawRect2(quad.x.toDouble(), quad.y.toDouble(), quad.w.toDouble(), quad.h.toDouble(), Color(40, 40, 40, alpha).rgb)
-        Fonts.InterBold_26.drawString("Hex:", quad.x, quad.y - 12, RenderUtils.applyOpacity(-1, alpha / 255f))
+        Fonts.minecraftFont.drawString("十六进制:", quad.x.toInt(), (quad.y - 12).toInt(), RenderUtils.applyOpacity(-1, alpha / 255f))
     }
     fun getBgPreviewColor(mode: String, alpha: Int): Int {
         val customBgColorValue = ColorValue("CustomBG", Color(32, 32, 64), false)
@@ -115,7 +115,7 @@ object SideGuiBackgroundManager {
 
     fun openBgColorPalette() {
         ClientThemesUtils.BackgroundMode = "custom"
-        displayChatMessage("Opening BG color palette for 'Custom' mode...")
+        displayChatMessage("正在打开自定义背景颜色面板...")
     }
     fun checkBackgroundInteractions(mouseX: Int, mouseY: Int) {
 

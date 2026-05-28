@@ -153,7 +153,7 @@ class NeverloseGui : GuiScreen() {
         val avatarY = footerLineY + 9
         RoundedUtil.drawRoundTextured((x + 4).toFloat(), avatarY.toFloat(), 20f, 20f, 10f, 1f)
         Fonts.Nl_18.drawString(mc.session.username, (x + 29).toFloat(), (avatarY + 1).toFloat(), if (light) Color(51, 51, 51).rgb else -1)
-        Fonts.Nl_16.drawString(ChatFormatting.GRAY.toString() + "Till: " + ChatFormatting.RESET + SimpleDateFormat("dd:MM").format(Date()) + " " + SimpleDateFormat("HH:mm").format(Date()), (x + 29).toFloat(), (avatarY + 13).toFloat(), neverlosecolor.rgb)
+        Fonts.Nl_16.drawString(ChatFormatting.GRAY.toString() + "有效期: " + ChatFormatting.RESET + SimpleDateFormat("dd:MM").format(Date()) + " " + SimpleDateFormat("HH:mm").format(Date()), (x + 29).toFloat(), (avatarY + 13).toFloat(), neverlosecolor.rgb)
 
         val fdpString = "FDP"
         val fdpWidth = Fonts.NLBold_28.stringWidth(fdpString)
@@ -207,21 +207,21 @@ class NeverloseGui : GuiScreen() {
 
         val headerIcons = listOf(
             HeaderIcon("GitHub", githubIcon) { MiscUtils.showURL(CLIENT_GITHUB) },
-            HeaderIcon("Edit", editIcon) { mc.displayGuiScreen(GuiHudDesigner()) },
-            HeaderIcon("Viewer", eyeIcon) {
+            HeaderIcon("编辑", editIcon) { mc.displayGuiScreen(GuiHudDesigner()) },
+            HeaderIcon("查看", eyeIcon) {
                 viewerOpen = !viewerOpen
                 if (viewerOpen) {
                     espPreviewComponent = EspPreviewComponent(this)
                 }
             },
             HeaderIcon("Spotify", spotifyIcon) { SpotifyModule.openPlayerScreen() },
-            HeaderIcon("Keybind", keyBindIcon) { mc.displayGuiScreen(KeyBindManager) },
+            HeaderIcon("按键", keyBindIcon) { mc.displayGuiScreen(KeyBindManager) },
 
-            HeaderIcon("Support", supportIcon) { MiscUtils.showURL("https://github.com/opZywl/fdpclient/issues") },
-            HeaderIcon("Update", updateIcon) { mc.displayGuiScreen(GuiUpdate()) },
-            HeaderIcon("Theme", themeIcon) { sideGui.openCategory("Color") },
+            HeaderIcon("帮助", supportIcon) { MiscUtils.showURL("https://github.com/opZywl/fdpclient/issues") },
+            HeaderIcon("更新", updateIcon) { mc.displayGuiScreen(GuiUpdate()) },
+            HeaderIcon("主题", themeIcon) { sideGui.openCategory("Color") },
             HeaderIcon("Discord", discordIcon) { MiscUtils.showURL("https://discord.com/invite/3XRFGeqEYD") },
-            HeaderIcon("Fonts", fontsIcon) { mc.displayGuiScreen(GuiFontManager(this)) }
+            HeaderIcon("字体", fontsIcon) { mc.displayGuiScreen(GuiFontManager(this)) }
         )
 
         GlStateManager.enableTexture2D()
