@@ -48,7 +48,7 @@ object SideGuiConfigsManager {
             buttonToggleHeight.toDouble(),
             openFolderButtonColor
         )
-        Fonts.InterBold_26.drawString("OPEN FOLDER", openFolderButtonX + 10, openFolderButtonY + 5, RenderUtils.applyOpacity(-1, alpha / 255f))
+        Fonts.minecraftFont.drawString("打开文件夹", openFolderButtonX + 5, openFolderButtonY + 4, RenderUtils.applyOpacity(-1, alpha / 255f))
 
         val onlineButtonX = xStart
         val onlineButtonY = openFolderButtonY + buttonToggleHeight + buttonSpacing
@@ -65,7 +65,7 @@ object SideGuiConfigsManager {
             buttonToggleHeight.toDouble(),
             onlineButtonColor
         )
-        Fonts.InterBold_26.drawString("ONLINE", onlineButtonX + 10, onlineButtonY + 5, RenderUtils.applyOpacity(-1, alpha / 255f))
+        Fonts.minecraftFont.drawString("在线", onlineButtonX + 20, onlineButtonY + 4, RenderUtils.applyOpacity(-1, alpha / 255f))
 
         val localButtonX = onlineButtonX + buttonToggleWidth + buttonSpacing
         val localButtonY = onlineButtonY
@@ -82,7 +82,7 @@ object SideGuiConfigsManager {
             buttonToggleHeight.toDouble(),
             localButtonColor
         )
-        Fonts.InterBold_26.drawString("LOCAL", localButtonX + 10, localButtonY + 5, RenderUtils.applyOpacity(-1, alpha / 255f))
+        Fonts.minecraftFont.drawString("本地", localButtonX + 20, localButtonY + 4, RenderUtils.applyOpacity(-1, alpha / 255f))
 
         if (!wasMousePressed && Mouse.isButtonDown(0)) {
             when {
@@ -124,7 +124,7 @@ object SideGuiConfigsManager {
                     }
                 }
             } else {
-                Fonts.InterBold_26.drawString("No local configurations available.", configX, configY, RenderUtils.applyOpacity(-1, alpha / 255f))
+                Fonts.minecraftFont.drawString("没有可用的本地配置。", configX, configY + 4, RenderUtils.applyOpacity(-1, alpha / 255f))
             }
         } else {
             if (!autoSettingsList.isNullOrEmpty()) {
@@ -143,7 +143,7 @@ object SideGuiConfigsManager {
                     }
                 }
             } else {
-                Fonts.InterBold_26.drawString("No online configurations available.", configX, configY, RenderUtils.applyOpacity(-1, alpha / 255f))
+                Fonts.minecraftFont.drawString("没有可用的在线配置。", configX, configY + 4, RenderUtils.applyOpacity(-1, alpha / 255f))
             }
         }
     }

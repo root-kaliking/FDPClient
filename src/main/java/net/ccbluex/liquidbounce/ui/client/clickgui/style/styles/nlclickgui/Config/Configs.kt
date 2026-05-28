@@ -59,7 +59,7 @@ class Configs {
         val openFolderWidth = buttonToggleWidth * 2
 
         drawButton(baseX, baseY, openFolderWidth, buttonHeight, mx, my, NeverloseGui.getInstance().light, false)
-        Fonts.InterBold_26.drawString("OPEN FOLDER", (baseX + 10).toFloat(), (baseY + 5).toFloat(), applyTextColor(alpha, false))
+        Fonts.minecraftFont.drawString("打开文件夹", (baseX + 5).toFloat(), (baseY + 4).toFloat(), applyTextColor(alpha, false))
         interactiveAreas.add(ButtonArea(baseX.toFloat(), baseY.toFloat(), openFolderWidth.toFloat(), buttonHeight.toFloat()) {
             openFolder()
         })
@@ -68,7 +68,7 @@ class Configs {
 
         val onlineActive = !showLocalConfigs
         drawToggle(baseX, togglesY, buttonToggleWidth, buttonHeight, mx, my, onlineActive)
-        Fonts.InterBold_26.drawString("ONLINE", (baseX + 10).toFloat(), (togglesY + 5).toFloat(), applyTextColor(alpha, onlineActive))
+        Fonts.minecraftFont.drawString("在线", (baseX + 20).toFloat(), (togglesY + 4).toFloat(), applyTextColor(alpha, onlineActive))
         interactiveAreas.add(ButtonArea(baseX.toFloat(), togglesY.toFloat(), buttonToggleWidth.toFloat(), buttonHeight.toFloat()) {
             showLocalConfigs = false
             if (onlineConfigsCache == null) {
@@ -80,7 +80,7 @@ class Configs {
 
         val localActive = showLocalConfigs
         drawToggle(localX, togglesY, buttonToggleWidth, buttonHeight, mx, my, localActive)
-        Fonts.InterBold_26.drawString("LOCAL", (localX + 10).toFloat(), (togglesY + 5).toFloat(), applyTextColor(alpha, localActive))
+        Fonts.minecraftFont.drawString("本地", (localX + 20).toFloat(), (togglesY + 4).toFloat(), applyTextColor(alpha, localActive))
         interactiveAreas.add(ButtonArea(localX.toFloat(), togglesY.toFloat(), buttonToggleWidth.toFloat(), buttonHeight.toFloat()) {
             showLocalConfigs = true
         })
@@ -177,11 +177,11 @@ class Configs {
                     }
                 }
             } else {
-                Fonts.InterBold_26.drawString("没有可用的本地配置。", configX, configY, standardTextColor)
+                Fonts.minecraftFont.drawString("没有可用的本地配置。", configX, configY + 4, standardTextColor)
             }
         } else {
             if (isLoadingOnline) {
-                Fonts.InterBold_26.drawString("正在加载在线配置...", configX, configY, standardTextColor)
+                Fonts.minecraftFont.drawString("正在加载在线配置...", configX, configY + 4, standardTextColor)
                 return
             }
 
@@ -206,7 +206,7 @@ class Configs {
                     }
                 }
             } else {
-                Fonts.InterBold_26.drawString("没有在线配置或加载失败。", configX, configY, standardTextColor)
+                Fonts.minecraftFont.drawString("没有在线配置或加载失败。", configX, configY + 4, standardTextColor)
             }
         }
     }
