@@ -33,7 +33,6 @@ class GuiCommitInfo : AbstractScreen() {
         val buttonY = height - buttonHeight - 10
 
         +GuiButton(0, buttonX, buttonY, buttonWidth, buttonHeight, "返回")
-        +GuiButton(1, (width / 2f - 50).toInt(), height / 4 + 225, 100, 20, "Git信息")
 
         super.initGui()
     }

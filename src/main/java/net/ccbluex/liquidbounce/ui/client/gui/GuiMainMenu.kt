@@ -15,7 +15,6 @@ import net.ccbluex.liquidbounce.FDPClient.clientVersionText
 import net.ccbluex.liquidbounce.features.module.modules.client.HUDModule.guiColor
 import net.ccbluex.liquidbounce.file.FileManager
 import net.ccbluex.liquidbounce.handler.api.ClientUpdate
-import net.ccbluex.liquidbounce.handler.lang.translationText
 import net.ccbluex.liquidbounce.ui.client.altmanager.GuiAltManager
 import net.ccbluex.liquidbounce.ui.client.clickgui.ClickGui
 import net.ccbluex.liquidbounce.ui.client.gui.button.ImageButton

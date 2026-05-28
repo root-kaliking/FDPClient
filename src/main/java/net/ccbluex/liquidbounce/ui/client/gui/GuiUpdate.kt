@@ -92,12 +92,12 @@ class GuiUpdate : AbstractScreen() {
         glPushMatrix()
         glScalef(2F, 2F, 2F)
         val titleWidth = Fonts.minecraftFont.getStringWidth("新更新可用！") / 2
-Fonts.minecraftFont.drawStringWithShadow(
-    "新更新可用！",
-    (width / 4f) - titleWidth,
-    titleYPosition / 2f,
-    Color(255, 0, 0).rgb
-)
+        Fonts.minecraftFont.drawStringWithShadow(
+            "新更新可用！",
+            (width / 4f) - titleWidth,
+            titleYPosition / 2f,
+            Color(255, 0, 0).rgb
+        )
         glPopMatrix()
 
         if (isLoading) {
@@ -153,7 +153,7 @@ Fonts.minecraftFont.drawStringWithShadow(
                     try {
                         performAllChecksAsync()
                     } catch (e: Exception) {
-                        errorMessage = "刷新API失败: ${(e as? JsonIOException)?.message ?: e.message}"
+                        errorMessage = "刷新API失败: ${e.message}"
                     } finally {
                         isLoading = false
                         loadProgress = 100
