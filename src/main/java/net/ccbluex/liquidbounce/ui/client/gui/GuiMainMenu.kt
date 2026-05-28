@@ -352,7 +352,7 @@ class GuiMainMenu : AbstractScreen(), GuiYesNoCallback {
             title("§c§lJava运行环境版本过旧")
             message(
                 """
-                §6§l您正在使用一个过时的Java 8版本 (${javaVersion!!.raw})。
+                §6§l您正在使用一个过时的Java 8版本 (${javaVersion?.raw ?: "未知"})。
                 
                 §f这可能会导致意外的 §c§l错误§f。
                 请更新到8u101以上版本，或从网上重新下载新版本。
