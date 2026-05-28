@@ -182,11 +182,11 @@ object SideGuiColorManager {
             fadeSpeedSliderHeight.toDouble(),
             Color(100, 150, 100).rgb
         )
-        Fonts.minecraftFont.drawString("速度: $ThemeFadeSpeed", fadeSpeedSliderX + 5, fadeSpeedSliderY - 15, Color.WHITE.rgb)
+        Fonts.minecraftFont.drawString("速度: $ThemeFadeSpeed", (fadeSpeedSliderX + 5).toInt(), (fadeSpeedSliderY - 15).toInt(), Color.WHITE.rgb)
 
         val toggleColor = if (updown) Color(0, 150, 0).rgb else Color(150, 0, 0).rgb
         RenderUtils.drawRect2(buttonX.toDouble(), buttonY.toDouble(), buttonWidth.toDouble(), buttonHeight.toDouble(), toggleColor)
-        Fonts.minecraftFont.drawString("反向", buttonX + 2, buttonY + 2, Color.WHITE.rgb)
+        Fonts.minecraftFont.drawString("反向", (buttonX + 2).toInt(), (buttonY + 2).toInt(), Color.WHITE.rgb)
 
         val hexField = getColorHexFieldArea(drag)
         RenderUtils.drawRect2(
@@ -197,7 +197,7 @@ object SideGuiColorManager {
             Color(40, 40, 40, alpha).rgb
         )
 
-        Fonts.minecraftFont.drawString("十六进制:", hexField.x, hexField.y - 12, RenderUtils.applyOpacity(-1, alpha / 255f))
+        Fonts.minecraftFont.drawString("十六进制:", hexField.x.toInt(), (hexField.y - 12).toInt(), RenderUtils.applyOpacity(-1, alpha / 255f))
     }
 
     fun checkColorCategoryInteractions(mouseX: Int, mouseY: Int, drag: Drag) {
