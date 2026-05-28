@@ -8,6 +8,8 @@ package net.ccbluex.liquidbounce.ui.client.clickgui.elements
 import net.ccbluex.liquidbounce.FDPClient.clickGui
 import net.ccbluex.liquidbounce.features.module.Module
 import net.ccbluex.liquidbounce.features.module.modules.client.ClickGUIModule.spacedModules
+import net.ccbluex.liquidbounce.handler.lang.translation
+import net.ccbluex.liquidbounce.utils.extensions.toLowerCamelCase
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
@@ -16,7 +18,12 @@ class ModuleElement(val module: Module) : ButtonElement(module.name, buttonActio
     // This module element handles the click action itself.
 }) {
     override val displayName
-        get() = module.getName(spacedModules)
+        get() {
+            val internalName = module.getName(spacedModules)
+            val key = "module.${module.name.toLowerCamelCase()}.name"
+            val translated = translation(key)
+            return if (translated == key) internalName else translated
+        }
 
     override var hoverText = ""
         get() = module.description

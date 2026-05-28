@@ -36,7 +36,7 @@ class FluxTH(inst: Targets) : TargetStyle("Flux", inst, true) {
         Fonts.fontSemibold40.drawString(entity.name, 22, 3, Color.WHITE.rgb)
         GL11.glPushMatrix()
         GL11.glScaled(0.7, 0.7, 0.7)
-        Fonts.fontSemibold35.drawString("Health: ${decimalFormat.format(getHealth(entity))}", 22 / 0.7F, (4 + Fonts.fontSemibold40.height) / 0.7F, Color.WHITE.rgb)
+        Fonts.fontSemibold35.drawString("血量: ${decimalFormat.format(getHealth(entity))}", 22 / 0.7F, (4 + Fonts.fontSemibold40.height) / 0.7F, Color.WHITE.rgb)
         GL11.glPopMatrix()
 
         // Draw head

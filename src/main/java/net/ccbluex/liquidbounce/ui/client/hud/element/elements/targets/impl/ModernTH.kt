@@ -28,7 +28,7 @@ class ModernTH(inst: Targets) : TargetStyle("Modern", inst, true) {
 
         updateAnim(entity.health)
 
-        val additionalWidth = ((font.getStringWidth(entity.name) * 1.1).toInt().coerceAtLeast(70) + font.getStringWidth("Name: ") * 1.1 + 7.0).roundToInt()
+        val additionalWidth = ((font.getStringWidth(entity.name) * 1.1).toInt().coerceAtLeast(70) + font.getStringWidth("名称: ") * 1.1 + 7.0).roundToInt()
         val healthBarWidth = additionalWidth - (font.getStringWidth("20") * 1.15).roundToInt() - 16
         RenderUtils.drawRoundedCornerRect(0f, 0f, 50f + additionalWidth, 50f, 7f, Color(0, 0, 0, 130).rgb)
         //RenderUtils.drawShadow(2f, 2f, 48f + additionalWidth, 48f)
@@ -64,8 +64,8 @@ class ModernTH(inst: Targets) : TargetStyle("Modern", inst, true) {
         // draw name
         GL11.glPushMatrix()
         GL11.glScalef(1.1f, 1.1f, 1.1f)
-        font.drawString("Name: ${entity.name}", 45, 14, getColorWithAlpha(0, fadeAlpha(255)).rgb)
-        font.drawString("Name:", 45, 14, Color.WHITE.rgb)
+        font.drawString("名称: ${entity.name}", 45, 14, getColorWithAlpha(0, fadeAlpha(255)).rgb)
+        font.drawString("名称:", 45, 14, Color.WHITE.rgb)
         GL11.glPopMatrix()
 
         // draw health
@@ -84,7 +84,7 @@ class ModernTH(inst: Targets) : TargetStyle("Modern", inst, true) {
 
         val font = Fonts.fontSemibold35
 
-        val additionalWidth = ((font.getStringWidth(entity.name) * 1.1).toInt().coerceAtLeast(70) + font.getStringWidth("Name: ") * 1.1 + 7.0).roundToInt()
+        val additionalWidth = ((font.getStringWidth(entity.name) * 1.1).toInt().coerceAtLeast(70) + font.getStringWidth("名称: ") * 1.1 + 7.0).roundToInt()
 
         return Border(0F, 0F, 50F + additionalWidth, 50F)
     }

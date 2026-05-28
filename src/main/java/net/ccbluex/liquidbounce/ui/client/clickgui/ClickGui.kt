@@ -137,7 +137,7 @@ object ClickGui : GuiScreen() {
             emptyList()
         }
 
-        return Panel("Auto Settings", xPos, yPos, width, height, false, list)
+        return Panel("自动设置", xPos, yPos, width, height, false, list)
     }
 
     override fun drawScreen(x: Int, y: Int, partialTicks: Float) {

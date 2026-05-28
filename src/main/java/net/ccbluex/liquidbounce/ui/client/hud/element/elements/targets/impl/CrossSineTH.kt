@@ -28,8 +28,8 @@ class CrossSineTH(inst: Targets) : TargetStyle("CrossSine", inst, true) {
 
     override fun drawTarget(entity: EntityLivingBase) {
         val fonts = Fonts.fontSemibold40
-        val textWidth = if (fonts.getStringWidth(entity.name) < fonts.getStringWidth("HurtTime : ${entity.hurtTime}"))
-            fonts.getStringWidth("HurtTime : ${entity.hurtTime}")
+        val textWidth = if (fonts.getStringWidth(entity.name) < fonts.getStringWidth("受伤时间: ${entity.hurtTime}"))
+            fonts.getStringWidth("受伤时间: ${entity.hurtTime}")
         else
             fonts.getStringWidth(entity.name)
         updateAnim(entity.health)
@@ -64,7 +64,7 @@ class CrossSineTH(inst: Targets) : TargetStyle("CrossSine", inst, true) {
         )
         enableBlend()
         fonts.drawString(entity.name, 51F, 5F, Color(255, 255, 255, fadeAlpha(255)).rgb, true)
-        fonts.drawString("HurtTime : ${entity.hurtTime}", 51F, 18F, Color(255, 255, 255, fadeAlpha(255)).rgb, true)
+        fonts.drawString("受伤时间: ${entity.hurtTime}", 51F, 18F, Color(255, 255, 255, fadeAlpha(255)).rgb, true)
         glPushMatrix()
         glTranslatef(7f, 7f, 0f)
         glColor4f(1f, 1 - entity.hurtPercent, 1 - entity.hurtPercent, 1f)
@@ -87,8 +87,8 @@ class CrossSineTH(inst: Targets) : TargetStyle("CrossSine", inst, true) {
     override fun getBorder(entity: EntityLivingBase?): Border {
         val fonts = Fonts.fontSemibold40
         val textWidth = if (entity != null) {
-            if (fonts.getStringWidth(entity.name) < fonts.getStringWidth("HurtTime : ${entity.hurtTime}"))
-                fonts.getStringWidth("HurtTime : ${entity.hurtTime}")
+            if (fonts.getStringWidth(entity.name) < fonts.getStringWidth("受伤时间: ${entity.hurtTime}"))
+                fonts.getStringWidth("受伤时间: ${entity.hurtTime}")
             else
                 fonts.getStringWidth(entity.name)
         } else 0
