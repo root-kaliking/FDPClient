@@ -76,13 +76,14 @@ object ClickGui : GuiScreen() {
 
         for (category in Category.entries) {
             panels += Panel(
-                category.displayName,
+                category.configName,
                 x = 100,
                 y = yPos,
                 width,
                 height,
                 false,
-                moduleManager[category].map(::ModuleElement)
+                moduleManager[category].map(::ModuleElement),
+                displayName = category.displayName
             )
 
             yPos += 20
