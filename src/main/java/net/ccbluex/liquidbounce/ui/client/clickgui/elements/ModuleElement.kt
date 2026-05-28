@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
 class ModuleElement(val module: Module) : ButtonElement(module.name, buttonAction = {
     // This module element handles the click action itself.
 }) {
-    override val displayName
+    override val displayName: String
         get() {
             val internalName = module.getName(spacedModules)
             val key = "module.${module.name.toLowerCamelCase()}.name"
